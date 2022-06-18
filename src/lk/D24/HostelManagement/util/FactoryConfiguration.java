@@ -1,6 +1,9 @@
 package lk.D24.HostelManagement.util;
 
 import lk.D24.HostelManagement.entity.Employee;
+import lk.D24.HostelManagement.entity.Reserve;
+import lk.D24.HostelManagement.entity.Room;
+import lk.D24.HostelManagement.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -28,6 +31,9 @@ public class FactoryConfiguration {
 
         // configuration.addAnnotatedClass();
         configuration.addAnnotatedClass(Employee.class);
+        configuration.addAnnotatedClass(Reserve.class);
+        configuration.addAnnotatedClass(Student.class);
+        configuration.addAnnotatedClass(Room.class);
 
         sessionFactory = configuration.buildSessionFactory();
 

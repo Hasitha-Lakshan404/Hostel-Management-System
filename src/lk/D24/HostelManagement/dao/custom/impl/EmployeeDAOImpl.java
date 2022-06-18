@@ -8,6 +8,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.persistence.Query;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -45,6 +46,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         session.save(emp2);
         session.save(emp3);*/
 
+//         List<Employee> allEmp = session.createQuery(SELECT * FROM Student).getResultList();
+         session.createQuery("");
+
+//        Query sessionQuery = session.createQuery("SELECT * FROM  Employee");
+
+
         Criteria criteria = session.createCriteria(Employee.class);
         List employees = criteria.list();
 
@@ -57,7 +64,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public boolean save(Employee dto) throws SQLException, ClassNotFoundException {
-
         return false;
     }
 
