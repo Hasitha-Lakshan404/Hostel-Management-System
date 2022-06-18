@@ -1,5 +1,6 @@
 package lk.D24.HostelManagement.util;
 
+import lk.D24.HostelManagement.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -26,6 +27,7 @@ public class FactoryConfiguration {
         configuration.setProperties(p);
 
         // configuration.addAnnotatedClass();
+        configuration.addAnnotatedClass(Employee.class);
 
         sessionFactory = configuration.buildSessionFactory();
 

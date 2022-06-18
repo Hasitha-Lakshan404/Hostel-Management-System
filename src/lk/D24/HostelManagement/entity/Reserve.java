@@ -10,19 +10,18 @@ import java.time.LocalDate;
 /**
  * @author : Hasitha Lakshan
  * Project :Hostel_Management_System
- * Date :6/17/2022
- * Time :4:25 PM
+ * Date :6/18/2022
+ * Time :11:48 PM
  */
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Student {
-    String studentId;
-    String name;
-    String address;
-    String telNo;
+public class Reserve {
+    String resId;
     LocalDate date;
-    String gender;
+    double keyMoney;
+    String cusId;
+    String roomId;
 }

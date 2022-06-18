@@ -1,5 +1,6 @@
 package lk.D24.HostelManagement.dao;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  */
 
 public interface CrudDAO<T, ID> extends SuperDAO {
-    ArrayList<T> getAll() throws SQLException, ClassNotFoundException;
+    ArrayList<T> getAll() throws SQLException, ClassNotFoundException, IOException;
 
     boolean save(T dto) throws SQLException, ClassNotFoundException;
 
