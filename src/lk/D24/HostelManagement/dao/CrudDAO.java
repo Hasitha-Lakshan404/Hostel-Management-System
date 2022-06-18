@@ -13,17 +13,15 @@ import java.util.ArrayList;
  */
 
 public interface CrudDAO<T, ID> extends SuperDAO {
-    ArrayList<T> getAll() throws SQLException, ClassNotFoundException, IOException;
+    ArrayList<T> getAll() ;
 
-    boolean save(T dto) throws SQLException, ClassNotFoundException;
+    boolean save(T entity) ;
 
-    boolean update(T dto) throws SQLException, ClassNotFoundException;
+    boolean update(T entity) ;
 
-    boolean exist(ID id) throws SQLException, ClassNotFoundException;
+    boolean delete(ID id) ;
 
-    boolean delete(ID id) throws SQLException, ClassNotFoundException;
+    String generateNewID() ;
 
-    String generateNewID() throws SQLException, ClassNotFoundException;
-
-    T search(String id) throws SQLException, ClassNotFoundException;
+    T search(String id) ;
 }

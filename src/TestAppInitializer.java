@@ -1,7 +1,3 @@
-import lk.D24.HostelManagement.dao.custom.EmployeeDAO;
-import lk.D24.HostelManagement.dao.custom.impl.EmployeeDAOImpl;
-import lk.D24.HostelManagement.entity.Employee;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,12 +12,6 @@ import java.util.ArrayList;
 public class TestAppInitializer {
 
     public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException {
-        EmployeeDAO employeeDAO=new EmployeeDAOImpl();
-
-        ArrayList<Employee> all = employeeDAO.getAll();
-        for (Employee employee : all) {
-            System.out.println(employee);
-        }
 
 
     }

@@ -1,6 +1,5 @@
 package lk.D24.HostelManagement.util;
 
-import lk.D24.HostelManagement.entity.Employee;
 import lk.D24.HostelManagement.entity.Reserve;
 import lk.D24.HostelManagement.entity.Room;
 import lk.D24.HostelManagement.entity.Student;
@@ -30,7 +29,6 @@ public class FactoryConfiguration {
         configuration.setProperties(p);
 
         // configuration.addAnnotatedClass();
-        configuration.addAnnotatedClass(Employee.class);
         configuration.addAnnotatedClass(Reserve.class);
         configuration.addAnnotatedClass(Student.class);
         configuration.addAnnotatedClass(Room.class);

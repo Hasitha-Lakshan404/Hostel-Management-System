@@ -2,9 +2,14 @@ package lk.D24.HostelManagement.dao.custom.impl;
 
 import lk.D24.HostelManagement.dao.custom.RoomDAO;
 import lk.D24.HostelManagement.entity.Room;
+import lk.D24.HostelManagement.util.FactoryConfiguration;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import java.sql.SQLException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author : Hasitha Lakshan
@@ -14,38 +19,64 @@ import java.util.ArrayList;
  */
 
 public class RoomDAOImpl implements RoomDAO {
+    Session session;
+
+    {
+        try {
+            session = FactoryConfiguration.getInstance().getSession();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    Transaction transaction=session.beginTransaction();
+
+
     @Override
-    public ArrayList<Room> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Room> getAll() {
+        Criteria criteria = session.createCriteria(Room.class);
+        List rooms = criteria.list();
+
+        ArrayList<Room> allRoom = new ArrayList<>(rooms);
+
+        transaction.commit();
+        session.close();
+        return allRoom;
+    }
+
+    @Override
+    public boolean save(Room entity)  {
+        session.save(entity);
+        transaction.commit();
+        session.close();
+        return true;
+    }
+
+    @Override
+    public boolean update(Room entity) {
+        session.update(entity);
+        transaction.commit();
+        session.close();
+        return true;
+    }
+
+    @Override
+    public boolean delete(String s) {
+        Room load = session.load(Room.class, s);
+        session.delete(load);
+        transaction.commit();
+        session.close();
+        return true;
+    }
+
+    @Override
+    public String generateNewID() {
         return null;
     }
 
     @Override
-    public boolean save(Room dto) throws SQLException, ClassNotFoundException {
-        return false;
-    }
-
-    @Override
-    public boolean update(Room dto) throws SQLException, ClassNotFoundException {
-        return false;
-    }
-
-    @Override
-    public boolean exist(String s) throws SQLException, ClassNotFoundException {
-        return false;
-    }
-
-    @Override
-    public boolean delete(String s) throws SQLException, ClassNotFoundException {
-        return false;
-    }
-
-    @Override
-    public String generateNewID() throws SQLException, ClassNotFoundException {
-        return null;
-    }
-
-    @Override
-    public Room search(String id) throws SQLException, ClassNotFoundException {
+    public Room search(String id) {
         return null;
     }
 }
