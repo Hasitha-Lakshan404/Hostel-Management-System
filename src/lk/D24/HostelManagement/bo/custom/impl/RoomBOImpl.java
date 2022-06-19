@@ -4,6 +4,7 @@ import lk.D24.HostelManagement.bo.custom.RoomBO;
 import lk.D24.HostelManagement.dao.custom.RoomDAO;
 import lk.D24.HostelManagement.dao.custom.impl.RoomDAOImpl;
 import lk.D24.HostelManagement.dto.RoomDTO;
+import lk.D24.HostelManagement.dto.StudentDTO;
 import lk.D24.HostelManagement.entity.Room;
 import lk.D24.HostelManagement.entity.Student;
 
@@ -21,7 +22,21 @@ public class RoomBOImpl implements RoomBO {
 
     @Override
     public ArrayList<RoomDTO> getAllRoom() {
-        return null;
+        ArrayList<Room> all = roomDAO.getAll();
+
+        ArrayList<RoomDTO> allRoom = new ArrayList<>();
+
+        for (Room room : all) {
+            allRoom.add(new RoomDTO(
+                    room.getRoomId(),
+                    room.getType(),
+                    room.getMonthly_rent(),
+                    room.getQty()
+
+            ));
+        }
+
+        return allRoom;
     }
 
     @Override
