@@ -20,7 +20,22 @@ public class StudentBOImpl implements StudentBO {
 
     @Override
     public ArrayList<StudentDTO> getAllStudent() {
-        return null;
+        ArrayList<Student> all = studentDAO.getAll();
+
+        ArrayList<StudentDTO> allStudent = new ArrayList<>();
+
+        for (Student student : all) {
+            allStudent.add(new StudentDTO(
+                    student.getStudentId(),
+                    student.getName(),
+                    student.getAddress(),
+                    student.getTelNo(),
+                    student.getDate(),
+                    student.getGender()
+                    ));
+        }
+
+        return allStudent;
     }
 
     @Override
