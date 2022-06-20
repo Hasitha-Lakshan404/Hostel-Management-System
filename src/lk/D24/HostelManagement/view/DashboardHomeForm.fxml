@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="1030.0" prefWidth="1900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.D24.HostelManagement.controller.DashboardHomeFormController">
+   <children>
+      <Label fx:id="lblUserShow" layoutX="1780.0" layoutY="29.0" prefHeight="21.0" prefWidth="93.0" text="Admin">
+         <font>
+            <Font name="Bodoni MT" size="22.0" />
+         </font>
+      </Label>
+
+      <Label fx:id="lblHomeTitleShow" layoutX="73.0" layoutY="23.0" prefHeight="27.0" prefWidth="420.0" text="Dashboard">
+         <font>
+            <Font name="Bodoni MT Bold" size="32.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#514fb2" />
+                  <Stop color="#1a9e9e" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+
+      <Line endX="1757.0" layoutX="153.0" layoutY="73.0" startX="-143.0" />
+      <Rectangle fx:id="icnRecSide" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="968.0" layoutX="9.0" layoutY="73.0" onMouseEntered="#iconSideMouseEnteredOnAction" stroke="#bfafaf" strokeType="OUTSIDE" strokeWidth="0.0" width="60.0" />
+      <ImageView fitHeight="28.0" fitWidth="31.0" layoutX="27.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assests/images/menu.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="38.0" fitWidth="39.0" layoutX="20.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assests/images/users.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="21.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assests/images/room.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="24.0" layoutY="946.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assests/images/logout.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="1094.0" layoutY="25.0" prefHeight="28.0" prefWidth="93.0" text="Time :">
+         <font>
+            <Font name="Book Antiqua" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="1349.0" layoutY="28.0" prefHeight="28.0" prefWidth="84.0" text="Date :">
+         <font>
+            <Font name="Book Antiqua" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTime" layoutX="1177.0" layoutY="26.0" prefHeight="28.0" prefWidth="138.0" text="00:00:00">
+         <font>
+            <Font name="Book Antiqua" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDate" layoutX="1425.0" layoutY="27.0" prefHeight="28.0" prefWidth="248.0" text="21/21/2020">
+         <font>
+            <Font name="Book Antiqua" size="18.0" />
+         </font>
+      </Label>
+      <AnchorPane fx:id="apnMainPane" layoutX="69.0" layoutY="73.0" prefHeight="968.0" prefWidth="1838.0" style="-fx-background-color: #e1e1e1;" />
+      <AnchorPane fx:id="apnSideNamePane" layoutX="69.0" layoutY="73.0" onMouseExited="#apnNameMouseExitedOnAction" prefHeight="968.0" prefWidth="215.0" style="-fx-background-color: WHITE;">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="751.0" stroke="#f8d7d7" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="215.0" />
+            <JFXButton id="SettingsButton" fx:id="btnSettings" layoutY="855.0" onMouseClicked="#buttonsClickOnAction" prefHeight="73.0" prefWidth="215.0" styleClass="menuItem" text="Log Out">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <VBox layoutY="141.0" prefHeight="335.0" prefWidth="215.0">
+               <children>
+                  <JFXButton id="customerButton" fx:id="btnCustomer" onMouseClicked="#buttonsClickOnAction" prefHeight="73.0" prefWidth="215.0" styleClass="menuItem" text="Manage Students">
+                     <font>
+                        <Font name="Bell MT" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton id="ItemButton" fx:id="btnItem" onMouseClicked="#buttonsClickOnAction" prefHeight="73.0" prefWidth="215.0" styleClass="menuItem" text="Manage Rooms">
+                     <font>
+                        <Font name="Bell MT" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton id="ItemButton" fx:id="btnItem1" layoutX="10.0" layoutY="83.0" onMouseClicked="#buttonsClickOnAction" prefHeight="73.0" prefWidth="215.0" styleClass="menuItem" text="Register Student">
+                     <font>
+                        <Font name="Bell MT" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton id="ItemButton" fx:id="btnItem11" layoutX="10.0" layoutY="156.0" onMouseClicked="#buttonsClickOnAction" prefHeight="73.0" prefWidth="215.0" styleClass="menuItem" text="Reservation Details">
+                     <font>
+                        <Font name="Bell MT" size="18.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </VBox>
+            <JFXButton id="dashBoardButton" fx:id="btnDashboard" layoutY="28.0" onMouseClicked="#buttonsClickOnAction" prefHeight="73.0" prefWidth="215.0" styleClass="menuItem" text="Dashboard">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="38.0" fitWidth="54.0" layoutX="1723.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assests/images/userud.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="21.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assests/images/stAdd.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="21.0" layoutY="445.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assests/images/resDetail.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
