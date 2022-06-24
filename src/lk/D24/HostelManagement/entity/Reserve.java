@@ -23,7 +23,8 @@ public class Reserve {
     @Id
     String resId;
     LocalDate date;
-    double keyMoney;
-    String cusId;
-    String roomId;
+    String studentId;
+    String roomType;
+    String status;
+
 }
