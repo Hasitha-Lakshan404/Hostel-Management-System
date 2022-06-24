@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 /**
  * @author : Hasitha Lakshan
@@ -20,9 +22,12 @@ import javax.persistence.Id;
 @Entity
 public class Room {
     @Id
-    String roomTypeId;
-    String type;
-    double keyMoney;
-    int qty;
+    private String roomTypeId;
+    private String type;
+    private double keyMoney;
+    private int qty;
+
+    @OneToMany(mappedBy = "room")
+    private List<Reserve> roomDetail;
 
 }

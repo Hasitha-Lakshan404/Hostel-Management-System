@@ -4,8 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
@@ -21,10 +20,17 @@ import java.time.LocalDate;
 @Entity
 public class Reserve {
     @Id
-    String resId;
-    LocalDate date;
-    String studentId;
-    String roomType;
-    String status;
+    private String resId;
+    private LocalDate date;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "studentId",referencedColumnName = "studentId")
+    private Student student;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "roomTypeId",referencedColumnName = "roomTypeId")
+    private Room room;
+    private String status;
+
 
 }

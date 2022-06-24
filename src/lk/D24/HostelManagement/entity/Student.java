@@ -24,12 +24,14 @@ import java.util.List;
 @Entity
 public class Student {
     @Id
-    String studentId;
-    String name;
-    String address;
-    String telNo;
-    LocalDate date;
-    String gender;
+    private String studentId;
+    private String name;
+    private String address;
+    private String telNo;
+    private LocalDate date;
+    private String gender;
 
+    @OneToMany(mappedBy = "student")
+    private List<Reserve> reservation;
 
 }
