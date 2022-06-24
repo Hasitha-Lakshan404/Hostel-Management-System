@@ -20,9 +20,9 @@ import javax.persistence.Id;
 @Entity
 public class Room {
     @Id
-    String roomId;
+    String roomTypeId;
     String type;
-    double monthly_rent;
-    String qty;
+    double keyMoney;
+    int qty;
 
 }
