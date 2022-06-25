@@ -7,7 +7,14 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import lk.D24.HostelManagement.bo.custom.StudentBO;
+import lk.D24.HostelManagement.bo.custom.impl.StudentBOImpl;
+import lk.D24.HostelManagement.dto.StudentDTO;
+import lk.D24.HostelManagement.view.tdm.StudentTM;
+
+import java.util.ArrayList;
 
 /**
  * @author : Hasitha Lakshan
@@ -22,17 +29,45 @@ public class StudentFormController {
     public JFXTextField txtAddress;
     public JFXTextField txtTellNo;
     public JFXDatePicker dateDOB;
-    public JFXComboBox cmbGender;
-    public TableView tblStudent;
+    public JFXComboBox<String> cmbGender;
+    public TableView<StudentTM> tblStudent;
     public JFXButton btnAdd;
-    public TableView tblRoom;
-    public JFXTextField txtRoomId;
-    public TextField txtSearchRoom;
-    public JFXTextField txtRoomType;
-    public JFXTextField txtKeyMoney;
-    public JFXTextField txtQty;
 
+    StudentBO studentBO=new StudentBOImpl();
+    public void initialize(){
+
+        tblStudent.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("studentId"));
+        tblStudent.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
+        tblStudent.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("address"));
+        tblStudent.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("telNo"));
+        tblStudent.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("date"));
+        tblStudent.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("gender"));
+
+
+        cmbGender.getItems().addAll("Male","Female");
+
+        getAllStudent();
+
+    }
+
+
+    public void getAllStudent(){
+        ArrayList<StudentDTO> allStudent = studentBO.getAllStudent();
+
+        for (StudentDTO studentDTO : allStudent) {
+            tblStudent.getItems().add(new StudentTM(
+                    studentDTO.getStudentId(),
+                    studentDTO.getName(),
+                    studentDTO.getAddress(),
+                    studentDTO.getTelNo(),
+                    studentDTO.getDate(),
+                    studentDTO.getGender()
+            ));
+        }
+
+    }
     public void textFieldValidationOnAction(KeyEvent keyEvent) {
+
     }
 
     public void studentAddOnAction(ActionEvent actionEvent) {
@@ -55,4 +90,5 @@ public class StudentFormController {
 
     public void searchDetails(KeyEvent keyEvent) {
     }
+
 }

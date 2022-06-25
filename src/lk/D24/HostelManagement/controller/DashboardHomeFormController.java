@@ -3,10 +3,10 @@ package lk.D24.HostelManagement.controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -27,6 +27,8 @@ public class DashboardHomeFormController {
     public AnchorPane apnMainPane;
     public AnchorPane apnSideNamePane;
     public JFXButton btnSettings;
+    public AnchorPane clockPane;
+    public Label lblForStage;
 
 
     public void initialize(){
@@ -74,5 +76,8 @@ public class DashboardHomeFormController {
 
     }
 
+    public void clockStartOnAction(MouseEvent mouseEvent) throws Exception {
+
+    }
 
 }
