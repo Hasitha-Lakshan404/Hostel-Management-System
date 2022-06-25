@@ -76,19 +76,11 @@ public class StudentFormController {
     public void StudentClearOnAction(ActionEvent actionEvent) {
     }
 
-    public void menuEditOnAction(ActionEvent actionEvent) {
+
+    public void menuUpdateOnAction(ActionEvent actionEvent) {
     }
 
     public void menuDeleteOnAction(ActionEvent actionEvent) {
-    }
-
-    public void RoomAddOnAction(ActionEvent actionEvent) {
-    }
-
-    public void RoomClearOnAction(ActionEvent actionEvent) {
-    }
-
-    public void searchDetails(KeyEvent keyEvent) {
     }
 
 }
