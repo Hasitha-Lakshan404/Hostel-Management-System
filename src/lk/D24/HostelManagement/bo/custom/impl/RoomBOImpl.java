@@ -28,9 +28,9 @@ public class RoomBOImpl implements RoomBO {
 
         for (Room room : all) {
             allRoom.add(new RoomDTO(
-                    room.getRoomId(),
+                    room.getRoomTypeId(),
                     room.getType(),
-                    room.getMonthly_rent(),
+                    room.getKeyMoney(),
                     room.getQty()
 
             ));
@@ -42,9 +42,9 @@ public class RoomBOImpl implements RoomBO {
     @Override
     public boolean saveRoom(RoomDTO dto) {
         return roomDAO.save(new Room(
-                dto.getRoomId(),
+                dto.getRoomTypeId(),
                 dto.getType(),
-                dto.getMonthly_rent(),
+                dto.getKeyMoney(),
                 dto.getQty()
         ));
     }
@@ -52,9 +52,9 @@ public class RoomBOImpl implements RoomBO {
     @Override
     public boolean updateRoom(RoomDTO dto) {
         return roomDAO.update(new Room(
-                dto.getRoomId(),
+                dto.getRoomTypeId(),
                 dto.getType(),
-                dto.getMonthly_rent(),
+                dto.getKeyMoney(),
                 dto.getQty()
         ));
     }

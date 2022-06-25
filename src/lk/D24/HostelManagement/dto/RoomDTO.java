@@ -18,8 +18,8 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RoomDTO {
-    String roomId;
-    String type;
-    double monthly_rent;
-    String qty;
+    private String roomTypeId;
+    private String type;
+    private double keyMoney;
+    private int qty;
 }
