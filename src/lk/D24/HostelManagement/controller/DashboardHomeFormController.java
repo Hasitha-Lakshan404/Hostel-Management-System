@@ -28,11 +28,17 @@ public class DashboardHomeFormController {
     public AnchorPane apnSideNamePane;
     public JFXButton btnSettings;
 
-    public void iconSideMouseEnteredOnAction(MouseEvent mouseEvent) {
 
+    public void initialize(){
+        apnSideNamePane.setVisible(false);
+    }
+
+    public void iconSideMouseEnteredOnAction(MouseEvent mouseEvent) {
+        apnSideNamePane.setVisible(true);
     }
 
     public void apnNameMouseExitedOnAction(MouseEvent mouseEvent) {
+        apnSideNamePane.setVisible(false);
     }
 
     public void buttonsClickOnAction(MouseEvent mouseEvent) throws IOException {
