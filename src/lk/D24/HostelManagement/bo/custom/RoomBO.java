@@ -3,6 +3,7 @@ package lk.D24.HostelManagement.bo.custom;
 import lk.D24.HostelManagement.dto.RoomDTO;
 import lk.D24.HostelManagement.dto.StudentDTO;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -13,13 +14,13 @@ import java.util.ArrayList;
  */
 
 public interface RoomBO {
-    ArrayList<RoomDTO> getAllRoom();
+    ArrayList<RoomDTO> getAllRoom() throws IOException;
 
-    boolean saveRoom(RoomDTO dto);
+    boolean saveRoom(RoomDTO dto) throws IOException;
 
-    boolean updateRoom(RoomDTO dto);
+    boolean updateRoom(RoomDTO dto) throws IOException;
 
-    boolean deleteRoom(String id);
+    boolean deleteRoom(String id) throws IOException;
 
     String generateRoomId();
 }

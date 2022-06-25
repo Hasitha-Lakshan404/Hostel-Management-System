@@ -8,6 +8,7 @@ import lk.D24.HostelManagement.dto.StudentDTO;
 import lk.D24.HostelManagement.entity.Room;
 import lk.D24.HostelManagement.entity.Student;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -21,7 +22,7 @@ public class RoomBOImpl implements RoomBO {
     RoomDAO roomDAO=new RoomDAOImpl();
 
     @Override
-    public ArrayList<RoomDTO> getAllRoom() {
+    public ArrayList<RoomDTO> getAllRoom() throws IOException {
         ArrayList<Room> all = roomDAO.getAll();
 
         ArrayList<RoomDTO> allRoom = new ArrayList<>();
@@ -40,7 +41,7 @@ public class RoomBOImpl implements RoomBO {
     }
 
     @Override
-    public boolean saveRoom(RoomDTO dto) {
+    public boolean saveRoom(RoomDTO dto) throws IOException {
         return roomDAO.save(new Room(
                 dto.getRoomTypeId(),
                 dto.getType(),
@@ -50,7 +51,7 @@ public class RoomBOImpl implements RoomBO {
     }
 
     @Override
-    public boolean updateRoom(RoomDTO dto) {
+    public boolean updateRoom(RoomDTO dto) throws IOException {
         return roomDAO.update(new Room(
                 dto.getRoomTypeId(),
                 dto.getType(),
@@ -60,7 +61,7 @@ public class RoomBOImpl implements RoomBO {
     }
 
     @Override
-    public boolean deleteRoom(String id) {
+    public boolean deleteRoom(String id) throws IOException {
         return roomDAO.delete(id);
     }
 

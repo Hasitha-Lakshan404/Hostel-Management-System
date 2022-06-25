@@ -4,7 +4,9 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -14,6 +16,7 @@ import lk.D24.HostelManagement.bo.custom.impl.StudentBOImpl;
 import lk.D24.HostelManagement.dto.StudentDTO;
 import lk.D24.HostelManagement.view.tdm.StudentTM;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -34,7 +37,7 @@ public class StudentFormController {
     public JFXButton btnAdd;
 
     StudentBO studentBO=new StudentBOImpl();
-    public void initialize(){
+    public void initialize() throws IOException {
 
         tblStudent.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("studentId"));
         tblStudent.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -51,7 +54,7 @@ public class StudentFormController {
     }
 
 
-    public void getAllStudent(){
+    public void getAllStudent() throws IOException {
         ArrayList<StudentDTO> allStudent = studentBO.getAllStudent();
 
         for (StudentDTO studentDTO : allStudent) {
@@ -80,7 +83,19 @@ public class StudentFormController {
     public void menuUpdateOnAction(ActionEvent actionEvent) {
     }
 
-    public void menuDeleteOnAction(ActionEvent actionEvent) {
+    public void menuDeleteOnAction(ActionEvent actionEvent) throws IOException {
+
+        StudentTM selectedItem = tblStudent.getSelectionModel().getSelectedItem();
+        System.out.println(selectedItem.getStudentId());
+        if(studentBO.deleteStudent(selectedItem.getStudentId())) {
+             new Alert(Alert.AlertType.CONFIRMATION,"Student Deleted SuccessFully").show();
+
+        }else{
+            new Alert(Alert.AlertType.WARNING,"Something Went Wring !!").show();
+
+        }
+
+
     }
 
 }

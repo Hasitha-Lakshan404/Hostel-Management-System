@@ -6,6 +6,7 @@ import lk.D24.HostelManagement.dao.custom.impl.StudentDAOImpl;
 import lk.D24.HostelManagement.dto.StudentDTO;
 import lk.D24.HostelManagement.entity.Student;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -19,7 +20,7 @@ public class StudentBOImpl implements StudentBO {
     StudentDAO studentDAO=new StudentDAOImpl();
 
     @Override
-    public ArrayList<StudentDTO> getAllStudent() {
+    public ArrayList<StudentDTO> getAllStudent() throws IOException {
         ArrayList<Student> all = studentDAO.getAll();
 
         ArrayList<StudentDTO> allStudent = new ArrayList<>();
@@ -39,7 +40,7 @@ public class StudentBOImpl implements StudentBO {
     }
 
     @Override
-    public boolean saveStudent(StudentDTO dto) {
+    public boolean saveStudent(StudentDTO dto) throws IOException {
         return studentDAO.save(new Student(
                 dto.getStudentId(),
                 dto.getName(),
@@ -51,7 +52,7 @@ public class StudentBOImpl implements StudentBO {
     }
 
     @Override
-    public boolean updateStudent(StudentDTO dto) {
+    public boolean updateStudent(StudentDTO dto) throws IOException {
         return studentDAO.update(new Student(
                 dto.getStudentId(),
                 dto.getName(),
@@ -64,7 +65,7 @@ public class StudentBOImpl implements StudentBO {
 
 
     @Override
-    public boolean deleteStudent(String id) {
+    public boolean deleteStudent(String id) throws IOException {
         return studentDAO.delete(id);
     }
 
