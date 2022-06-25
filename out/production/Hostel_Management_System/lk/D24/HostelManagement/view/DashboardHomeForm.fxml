@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1030.0" prefWidth="1900.0" stylesheets="@../../../../../../../SuperMarket/src/lk/LeonMart/superMarket/view/assests/style/MainTheam.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.D24.HostelManagement.controller.DashboardHomeFormController">
+<AnchorPane prefHeight="1030.0" prefWidth="1900.0" stylesheets="@assests/style/MainTheam.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.D24.HostelManagement.controller.DashboardHomeFormController">
    <children>
       <Label fx:id="lblUserShow" layoutX="1780.0" layoutY="29.0" prefHeight="21.0" prefWidth="93.0" text="Admin">
          <font>
@@ -81,7 +81,7 @@
       <AnchorPane fx:id="apnSideNamePane" layoutX="69.0" layoutY="73.0" onMouseExited="#apnNameMouseExitedOnAction" prefHeight="968.0" prefWidth="215.0" style="-fx-background-color: WHITE;">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="751.0" stroke="#f8d7d7" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="215.0" />
-            <JFXButton id="SettingsButton" fx:id="btnSettings" layoutY="855.0" onMouseClicked="#buttonsClickOnAction" prefHeight="73.0" prefWidth="215.0" styleClass="menuItem" text="Log Out">
+            <JFXButton id="LogoutButton" fx:id="btnSettings" layoutY="855.0" onMouseClicked="#buttonsClickOnAction" prefHeight="73.0" prefWidth="215.0" styleClass="menuItem" text="Log Out">
                <font>
                   <Font name="Bell MT" size="18.0" />
                </font>
@@ -91,22 +91,22 @@
             </JFXButton>
             <VBox layoutY="141.0" prefHeight="335.0" prefWidth="215.0">
                <children>
-                  <JFXButton id="customerButton" fx:id="btnCustomer" onMouseClicked="#buttonsClickOnAction" prefHeight="73.0" prefWidth="215.0" styleClass="menuItem" text="Manage Students">
+                  <JFXButton id="studentButton" fx:id="btnCustomer" onMouseClicked="#buttonsClickOnAction" prefHeight="73.0" prefWidth="215.0" styleClass="menuItem" text="Manage Students">
                      <font>
                         <Font name="Bell MT" size="18.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton id="ItemButton" fx:id="btnItem" onMouseClicked="#buttonsClickOnAction" prefHeight="73.0" prefWidth="215.0" styleClass="menuItem" text="Manage Rooms">
+                  <JFXButton id="roomButton" fx:id="btnItem" onMouseClicked="#buttonsClickOnAction" prefHeight="73.0" prefWidth="215.0" styleClass="menuItem" text="Manage Rooms">
                      <font>
                         <Font name="Bell MT" size="18.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton id="ItemButton" fx:id="btnItem1" layoutX="10.0" layoutY="83.0" onMouseClicked="#buttonsClickOnAction" prefHeight="73.0" prefWidth="215.0" styleClass="menuItem" text="Register Student">
+                  <JFXButton id="registerStudentButton" fx:id="btnItem1" layoutX="10.0" layoutY="83.0" onMouseClicked="#buttonsClickOnAction" prefHeight="73.0" prefWidth="215.0" styleClass="menuItem" text="Register Student">
                      <font>
                         <Font name="Bell MT" size="18.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton id="ItemButton" fx:id="btnItem11" layoutX="10.0" layoutY="156.0" onMouseClicked="#buttonsClickOnAction" prefHeight="73.0" prefWidth="215.0" styleClass="menuItem" text="Reservation Details">
+                  <JFXButton id="reservationDetailButton" fx:id="btnItem11" layoutX="10.0" layoutY="156.0" onMouseClicked="#buttonsClickOnAction" prefHeight="73.0" prefWidth="215.0" styleClass="menuItem" text="Reservation Details">
                      <font>
                         <Font name="Bell MT" size="18.0" />
                      </font>
