@@ -73,7 +73,35 @@ public class StudentFormController {
 
     }
 
-    public void studentAddOnAction(ActionEvent actionEvent) {
+    public void studentAddOnAction(ActionEvent actionEvent) throws IOException {
+        boolean b = studentBO.saveStudent(new StudentDTO(
+                txtStudentId.getText(),
+                txtStudentName.getText(),
+                txtAddress.getText(),
+                txtTellNo.getText(),
+                dateDOB.getValue(),
+                cmbGender.getValue()
+        ));
+
+        if(b){
+            new Alert(Alert.AlertType.CONFIRMATION,"Student Added SuccessFully").show();
+
+            tblStudent.getItems().add(new StudentTM(
+                    txtStudentId.getText(),
+                    txtStudentName.getText(),
+                    txtAddress.getText(),
+                    txtTellNo.getText(),
+                    dateDOB.getValue(),
+                    cmbGender.getValue()
+            ));
+
+
+        }else {
+            new Alert(Alert.AlertType.WARNING,"Something Went Wring !!").show();
+
+
+        }
+
     }
 
     public void StudentClearOnAction(ActionEvent actionEvent) {
@@ -88,8 +116,8 @@ public class StudentFormController {
         StudentTM selectedItem = tblStudent.getSelectionModel().getSelectedItem();
         System.out.println(selectedItem.getStudentId());
         if(studentBO.deleteStudent(selectedItem.getStudentId())) {
-             new Alert(Alert.AlertType.CONFIRMATION,"Student Deleted SuccessFully").show();
-
+            new Alert(Alert.AlertType.CONFIRMATION,"Student Deleted SuccessFully").show();
+            getAllStudent();
         }else{
             new Alert(Alert.AlertType.WARNING,"Something Went Wring !!").show();
 
