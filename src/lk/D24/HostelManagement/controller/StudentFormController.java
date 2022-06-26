@@ -98,7 +98,7 @@ public class StudentFormController {
                         dateDOB.getValue(),
                         cmbGender.getValue()
                 ));
-
+                clearFields();
 
             } else {
                 new Alert(Alert.AlertType.WARNING, "Something Went Wring !!").show();
@@ -114,12 +114,18 @@ public class StudentFormController {
             ));
             btnAdd.setText("Add Student");
             txtStudentId.setEditable(true);
+            clearFields();
             getAllStudent();
         }
 
     }
 
     public void StudentClearOnAction(ActionEvent actionEvent) {
+       clearFields();
+    }
+
+
+    private void clearFields(){
         txtStudentId.clear();
         txtStudentName.clear();
         txtAddress.clear();
@@ -127,7 +133,6 @@ public class StudentFormController {
         dateDOB.setValue(null);
         cmbGender.setValue(null);
     }
-
 
     public void menuUpdateOnAction(ActionEvent actionEvent) {
         StudentTM selectedItem = tblStudent.getSelectionModel().getSelectedItem();
