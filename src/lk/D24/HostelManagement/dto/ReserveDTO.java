@@ -23,4 +23,6 @@ public class ReserveDTO {
     String studentId;
     String roomId;
     String status;
+
+
 }
