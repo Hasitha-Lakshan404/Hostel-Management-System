@@ -79,7 +79,7 @@
             </ContextMenu>
          </contextMenu>
       </TableView>
-      <JFXButton id="effect" fx:id="btnAdd" layoutX="1104.0" layoutY="416.0" onAction="#studentAddOnAction" prefHeight="50.0" prefWidth="212.0" ripplerFill="#39c2ae" style="-fx-background-color: #52d0f7;" text="Add Room">
+      <JFXButton id="effect" fx:id="btnAdd" layoutX="1104.0" layoutY="416.0" onAction="#studentAddOnAction" prefHeight="50.0" prefWidth="212.0" ripplerFill="#39c2ae" style="-fx-background-color: #52d0f7;" text="Add Student">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
