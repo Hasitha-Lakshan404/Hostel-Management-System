@@ -1,23 +1,21 @@
-package lk.D24.HostelManagement.dto;
+package lk.D24.HostelManagement.view.tdm;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-
 /**
  * @author : Hasitha Lakshan
  * Project :Hostel_Management_System
- * Date :6/19/2022
- * Time :2:02 AM
+ * Date :6/26/2022
+ * Time :7:58 PM
  */
 
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoomDTO {
+public class RoomTM {
     private String roomTypeId;
     private String type;
     private double keyMoney;
