@@ -4,11 +4,9 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import lk.D24.HostelManagement.bo.custom.StudentBO;
@@ -36,7 +34,8 @@ public class StudentFormController {
     public TableView<StudentTM> tblStudent;
     public JFXButton btnAdd;
 
-    StudentBO studentBO=new StudentBOImpl();
+    StudentBO studentBO = new StudentBOImpl();
+
     public void initialize() throws IOException {
 
         tblStudent.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("studentId"));
@@ -47,7 +46,7 @@ public class StudentFormController {
         tblStudent.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("gender"));
 
 
-        cmbGender.getItems().addAll("Male","Female");
+        cmbGender.getItems().addAll("Male", "Female");
 
         getAllStudent();
 
@@ -69,6 +68,7 @@ public class StudentFormController {
         }
 
     }
+
     public void textFieldValidationOnAction(KeyEvent keyEvent) {
 
     }
@@ -83,8 +83,8 @@ public class StudentFormController {
                 cmbGender.getValue()
         ));
 
-        if(b){
-            new Alert(Alert.AlertType.CONFIRMATION,"Student Added SuccessFully").show();
+        if (b) {
+            new Alert(Alert.AlertType.CONFIRMATION, "Student Added SuccessFully").show();
 
             tblStudent.getItems().add(new StudentTM(
                     txtStudentId.getText(),
@@ -96,8 +96,8 @@ public class StudentFormController {
             ));
 
 
-        }else {
-            new Alert(Alert.AlertType.WARNING,"Something Went Wring !!").show();
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Something Went Wring !!").show();
 
 
         }
@@ -105,6 +105,12 @@ public class StudentFormController {
     }
 
     public void StudentClearOnAction(ActionEvent actionEvent) {
+        txtStudentId.clear();
+        txtStudentName.clear();
+        txtAddress.clear();
+        txtTellNo.clear();
+        dateDOB.setValue(null);
+        cmbGender.setValue(null);
     }
 
 
@@ -115,11 +121,11 @@ public class StudentFormController {
 
         StudentTM selectedItem = tblStudent.getSelectionModel().getSelectedItem();
         System.out.println(selectedItem.getStudentId());
-        if(studentBO.deleteStudent(selectedItem.getStudentId())) {
-            new Alert(Alert.AlertType.CONFIRMATION,"Student Deleted SuccessFully").show();
+        if (studentBO.deleteStudent(selectedItem.getStudentId())) {
+            new Alert(Alert.AlertType.CONFIRMATION, "Student Deleted SuccessFully").show();
             getAllStudent();
-        }else{
-            new Alert(Alert.AlertType.WARNING,"Something Went Wring !!").show();
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Something Went Wring !!").show();
 
         }
 
