@@ -56,6 +56,8 @@ public class StudentFormController {
     public void getAllStudent() throws IOException {
         ArrayList<StudentDTO> allStudent = studentBO.getAllStudent();
 
+        tblStudent.getItems().clear();
+
         for (StudentDTO studentDTO : allStudent) {
             tblStudent.getItems().add(new StudentTM(
                     studentDTO.getStudentId(),
@@ -74,19 +76,9 @@ public class StudentFormController {
     }
 
     public void studentAddOnAction(ActionEvent actionEvent) throws IOException {
-        boolean b = studentBO.saveStudent(new StudentDTO(
-                txtStudentId.getText(),
-                txtStudentName.getText(),
-                txtAddress.getText(),
-                txtTellNo.getText(),
-                dateDOB.getValue(),
-                cmbGender.getValue()
-        ));
 
-        if (b) {
-            new Alert(Alert.AlertType.CONFIRMATION, "Student Added SuccessFully").show();
-
-            tblStudent.getItems().add(new StudentTM(
+        if(btnAdd.getText().equals("Add Student")){
+            boolean b = studentBO.saveStudent(new StudentDTO(
                     txtStudentId.getText(),
                     txtStudentName.getText(),
                     txtAddress.getText(),
@@ -95,11 +87,34 @@ public class StudentFormController {
                     cmbGender.getValue()
             ));
 
+            if (b) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Student Added SuccessFully").show();
 
-        } else {
-            new Alert(Alert.AlertType.WARNING, "Something Went Wring !!").show();
+                tblStudent.getItems().add(new StudentTM(
+                        txtStudentId.getText(),
+                        txtStudentName.getText(),
+                        txtAddress.getText(),
+                        txtTellNo.getText(),
+                        dateDOB.getValue(),
+                        cmbGender.getValue()
+                ));
 
 
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Something Went Wring !!").show();
+            }
+        }else{
+            studentBO.updateStudent(new StudentDTO(
+                    txtStudentId.getText(),
+                    txtStudentName.getText(),
+                    txtAddress.getText(),
+                    txtTellNo.getText(),
+                    dateDOB.getValue(),
+                    cmbGender.getValue()
+            ));
+            btnAdd.setText("Add Student");
+            txtStudentId.setEditable(true);
+            getAllStudent();
         }
 
     }
@@ -115,6 +130,19 @@ public class StudentFormController {
 
 
     public void menuUpdateOnAction(ActionEvent actionEvent) {
+        StudentTM selectedItem = tblStudent.getSelectionModel().getSelectedItem();
+
+        txtStudentId.setText(selectedItem.getStudentId());
+        txtStudentId.setEditable(false);
+        txtStudentName.setText(selectedItem.getName());
+        txtAddress.setText(selectedItem.getAddress());
+        txtTellNo.setText(selectedItem.getTelNo());
+        dateDOB.setValue(selectedItem.getDob());
+        cmbGender.setValue(selectedItem.getGender());
+
+        btnAdd.setText("UPDATE");
+
+
     }
 
     public void menuDeleteOnAction(ActionEvent actionEvent) throws IOException {
