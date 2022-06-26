@@ -22,7 +22,7 @@ public class StudentTM {
     String name;
     String address;
     String telNo;
-    LocalDate date;
+    LocalDate dob;
     String gender;
 
 }

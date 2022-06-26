@@ -46,7 +46,7 @@ public class StudentBOImpl implements StudentBO {
                 dto.getName(),
                 dto.getAddress(),
                 dto.getTelNo(),
-                dto.getDate(),
+                dto.getDob(),
                 dto.getGender()
         ));
     }
@@ -58,7 +58,7 @@ public class StudentBOImpl implements StudentBO {
                 dto.getName(),
                 dto.getAddress(),
                 dto.getTelNo(),
-                dto.getDate(),
+                dto.getDob(),
                 dto.getGender()
         ));
     }
