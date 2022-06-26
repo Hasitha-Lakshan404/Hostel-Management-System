@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,18 +28,18 @@ public class Student {
     private String name;
     private String address;
     private String telNo;
-    private LocalDate date;
+    private LocalDate dob;
     private String gender;
 
     @OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
     private List<Reserve> reservation;
 
-    public Student(String studentId, String name, String address, String telNo, LocalDate date, String gender) {
+    public Student(String studentId, String name, String address, String telNo, LocalDate dob, String gender) {
         this.studentId = studentId;
         this.name = name;
         this.address = address;
         this.telNo = telNo;
-        this.date = date;
+        this.dob = dob;
         this.gender = gender;
     }
 }

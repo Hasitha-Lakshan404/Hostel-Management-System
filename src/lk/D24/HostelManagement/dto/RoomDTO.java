@@ -16,6 +16,7 @@ import javax.persistence.Entity;
 
 @Data
 @NoArgsConstructor
+
 @AllArgsConstructor
 public class RoomDTO {
     private String roomTypeId;

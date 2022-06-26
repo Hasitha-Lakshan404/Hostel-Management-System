@@ -24,7 +24,6 @@ import java.util.List;
 public class StudentDAOImpl implements StudentDAO {
 
 
-
     @Override
     public ArrayList<Student> getAll() throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();

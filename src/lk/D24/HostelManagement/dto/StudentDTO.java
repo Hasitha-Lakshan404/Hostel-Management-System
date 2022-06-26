@@ -22,6 +22,6 @@ public class StudentDTO {
     String name;
     String address;
     String telNo;
-    LocalDate date;
+    LocalDate dob;
     String gender;
 }

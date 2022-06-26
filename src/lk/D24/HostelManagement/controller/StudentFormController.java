@@ -43,7 +43,7 @@ public class StudentFormController {
         tblStudent.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
         tblStudent.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("address"));
         tblStudent.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("telNo"));
-        tblStudent.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("date"));
+        tblStudent.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("dob"));
         tblStudent.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("gender"));
 
 
@@ -63,7 +63,7 @@ public class StudentFormController {
                     studentDTO.getName(),
                     studentDTO.getAddress(),
                     studentDTO.getTelNo(),
-                    studentDTO.getDate(),
+                    studentDTO.getDob(),
                     studentDTO.getGender()
             ));
         }
