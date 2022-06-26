@@ -20,7 +20,7 @@ import java.time.LocalDate;
 public class ReserveDTO {
     String resId;
     LocalDate date;
-    double keyMoney;
-    String cusId;
+    String studentId;
     String roomId;
+    String status;
 }
