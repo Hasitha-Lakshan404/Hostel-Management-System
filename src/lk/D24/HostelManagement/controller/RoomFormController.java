@@ -1,6 +1,7 @@
 package lk.D24.HostelManagement.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
@@ -28,9 +29,9 @@ public class RoomFormController {
     public JFXTextField txtRoomId;
     public JFXButton btnAdd;
     public TextField txtSearchRoom;
-    public JFXTextField txtRoomType;
     public JFXTextField txtKeyMoney;
     public JFXTextField txtQty;
+    public JFXComboBox<String> cmbRoomType;
 
     RoomBO roomBO = new RoomBOImpl();
 
@@ -41,6 +42,7 @@ public class RoomFormController {
         tblRoom.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("qty"));
 
         loadAllRooms();
+        cmbRoomType.getItems().setAll("Non-AC","Non-AC/Food","AC","AC/Food");
     }
 
     public void loadAllRooms() throws IOException {
@@ -74,7 +76,10 @@ public class RoomFormController {
     public void textFieldValidationOnAction(KeyEvent keyEvent) {
     }
 
-    public void RoomAddOnAction(ActionEvent actionEvent) {
+    public void RoomAddOnAction(ActionEvent actionEvent) throws IOException {
+        roomBO.saveRoom(new RoomDTO(
+
+        ));
     }
 
     public void RoomClearOnAction(ActionEvent actionEvent) {
