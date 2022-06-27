@@ -21,7 +21,7 @@ public interface CrudDAO<T, ID> extends SuperDAO {
 
     boolean delete(ID id) throws IOException;
 
-    String generateNewID() ;
+    String generateNewID() throws IOException;
 
     T search(String id) ;
 }

@@ -19,22 +19,13 @@ import java.util.List;
  */
 
 public class RoomDAOImpl implements RoomDAO {
-    Session session;
-
-    {
-        try {
-            session = FactoryConfiguration.getInstance().getSession();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-    Transaction transaction=session.beginTransaction();
 
 
     @Override
-    public ArrayList<Room> getAll() {
+    public ArrayList<Room> getAll() throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
         Criteria criteria = session.createCriteria(Room.class);
         List rooms = criteria.list();
 
@@ -46,7 +37,10 @@ public class RoomDAOImpl implements RoomDAO {
     }
 
     @Override
-    public boolean save(Room entity)  {
+    public boolean save(Room entity) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
         session.save(entity);
         transaction.commit();
         session.close();
@@ -54,7 +48,10 @@ public class RoomDAOImpl implements RoomDAO {
     }
 
     @Override
-    public boolean update(Room entity) {
+    public boolean update(Room entity) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
         session.update(entity);
         transaction.commit();
         session.close();
@@ -62,7 +59,10 @@ public class RoomDAOImpl implements RoomDAO {
     }
 
     @Override
-    public boolean delete(String s) {
+    public boolean delete(String s) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
         Room load = session.load(Room.class, s);
         session.delete(load);
         transaction.commit();
@@ -71,7 +71,10 @@ public class RoomDAOImpl implements RoomDAO {
     }
 
     @Override
-    public String generateNewID() {
+    public String generateNewID() throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
         return null;
     }
 
