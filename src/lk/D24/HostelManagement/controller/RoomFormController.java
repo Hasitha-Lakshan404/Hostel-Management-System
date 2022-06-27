@@ -78,7 +78,10 @@ public class RoomFormController {
 
     public void RoomAddOnAction(ActionEvent actionEvent) throws IOException {
         roomBO.saveRoom(new RoomDTO(
-
+                txtRoomId.getText(),
+                cmbRoomType.getValue(),
+                Double.parseDouble(txtKeyMoney.getText()),
+                Integer.parseInt(txtQty.getText())
         ));
     }
 
