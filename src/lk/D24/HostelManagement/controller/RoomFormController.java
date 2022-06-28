@@ -151,6 +151,17 @@ public class RoomFormController {
 
     }
     public void menuEditOnAction(ActionEvent actionEvent) {
+        RoomTM selectedItem = tblRoom.getSelectionModel().getSelectedItem();
+
+        cmbRoomId.getSelectionModel().select(selectedItem.getRoomTypeId());
+        cmbRoomId.setDisable(true);
+
+        cmbRoomType.getSelectionModel().select(selectedItem.getType());
+        txtKeyMoney.setText(String.valueOf(selectedItem.getKeyMoney()));
+        txtQty.setText(String.valueOf(selectedItem.getQty()));
+        txtKeyMoney.setEditable(true);
+
+        btnAdd.setText("UPDATE");
 
     }
 
@@ -174,15 +185,38 @@ public class RoomFormController {
     }
 
     public void RoomAddOnAction(ActionEvent actionEvent) throws IOException {
-        boolean b=true;
-        for (RoomDTO roomDTO : roomBO.getAllRoom()) {
-            if(roomDTO.getRoomTypeId().equals(cmbRoomId.getValue())){
-                b=false;
+        if(btnAdd.getText().equalsIgnoreCase("Add Room")){
+            boolean b=true;
+            for (RoomDTO roomDTO : roomBO.getAllRoom()) {
+                if(roomDTO.getRoomTypeId().equals(cmbRoomId.getValue())){
+                    b=false;
+                }
             }
-        }
 
-        if(b){
-            roomBO.saveRoom(new RoomDTO(
+            if(b){
+                roomBO.saveRoom(new RoomDTO(
+                        cmbRoomId.getValue(),
+                        cmbRoomType.getValue(),
+                        Double.parseDouble(txtKeyMoney.getText()),
+                        Integer.parseInt(txtQty.getText())
+                ));
+                clear();
+                loadAllRooms();
+            }else{
+
+                //getQTY
+                Room room = roomBO.getRoom(cmbRoomId.getValue());
+                roomBO.updateRoom(new RoomDTO(
+                        cmbRoomId.getValue(),
+                        cmbRoomType.getValue(),
+                        Double.parseDouble(txtKeyMoney.getText()),
+                        (room.getQty()+(Integer.parseInt(txtQty.getText()))
+                        )));
+                clear();
+                loadAllRooms();
+            }
+        }else{
+            roomBO.updateRoom(new RoomDTO(
                     cmbRoomId.getValue(),
                     cmbRoomType.getValue(),
                     Double.parseDouble(txtKeyMoney.getText()),
@@ -190,19 +224,10 @@ public class RoomFormController {
             ));
             clear();
             loadAllRooms();
-        }else{
-
-            //getQTY
-            Room room = roomBO.getRoom(cmbRoomId.getValue());
-            roomBO.updateRoom(new RoomDTO(
-                    cmbRoomId.getValue(),
-                    cmbRoomType.getValue(),
-                    Double.parseDouble(txtKeyMoney.getText()),
-                    (room.getQty()+(Integer.parseInt(txtQty.getText()))
-            )));
-            clear();
-            loadAllRooms();
+            txtKeyMoney.setEditable(false);
+            btnAdd.setText("Add Room");
         }
+
 
     }
 
