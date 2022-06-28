@@ -64,13 +64,13 @@
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="79.0" layoutY="81.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
-      <Label layoutX="1050.0" layoutY="50.0" text="KeyMoney">
+      <Label layoutX="790.0" layoutY="52.0" text="KeyMoney">
          <font>
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="1046.0" layoutY="81.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
-      <JFXTextField fx:id="txtKeyMoney" layoutX="1061.0" layoutY="93.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="ex : RS 0000/=" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="786.0" layoutY="83.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
+      <JFXTextField fx:id="txtKeyMoney" layoutX="801.0" layoutY="95.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="ex : RS 0000/=" />
       <Label layoutX="83.0" layoutY="395.0" text="QTY">
          <font>
             <Font name="Bodoni MT" size="19.0" />
@@ -82,7 +82,7 @@
       <Label layoutX="388.0" layoutY="99.0" text="OR" />
       <Rectangle fx:id="recType" arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="469.0" layoutY="83.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
       <JFXTextField fx:id="txtRoomType" layoutX="484.0" layoutY="95.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="ex : AC/Food" />
-      <JFXButton id="effect" fx:id="btnAddRoomType" layoutX="775.0" layoutY="90.0" onAction="#btnAddRoomTypeOnAction" prefHeight="44.0" prefWidth="200.0" ripplerFill="#39c2ae" style="-fx-background-color: #52d0f7;" text="Add Room Type">
+      <JFXButton id="effect" fx:id="btnAddRoomType" layoutX="1091.0" layoutY="90.0" onAction="#btnAddRoomTypeOnAction" prefHeight="44.0" prefWidth="200.0" ripplerFill="#39c2ae" style="-fx-background-color: #52d0f7;" text="Add Room Type">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>

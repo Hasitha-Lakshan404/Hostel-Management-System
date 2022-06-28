@@ -84,7 +84,7 @@ public class RoomFormController {
                 btnAdd.setDisable(false);
                 txtRoom.setDisable(false);
                 rectangle.setDisable(false);
-                txtKeyMoney.clear();
+//                txtKeyMoney.clear();
                 txtKeyMoney.setEditable(true);
             } else {
                 btnAdd.setDisable(true);
@@ -102,7 +102,6 @@ public class RoomFormController {
                 try {
                     for (Room room : roomBO.getRoomDataFromType(newValue)) {
 
-//                        txtRoomId.setText(room.getRoomTypeId());
                         cmbRoomId.getSelectionModel().select(room.getRoomTypeId());
                         txtKeyMoney.setText(String.valueOf(room.getKeyMoney()));
 
@@ -143,6 +142,7 @@ public class RoomFormController {
 
     }
     public void menuEditOnAction(ActionEvent actionEvent) {
+
     }
 
     public void menuDeleteOnAction(ActionEvent actionEvent) throws IOException {
@@ -177,10 +177,19 @@ public class RoomFormController {
     }
 
     public void btnAddRoomTypeOnAction(ActionEvent actionEvent) {
+        cmbRoomType.getItems().add(txtRoomType.getText());
+        cmbRoomType.getSelectionModel().select(txtRoomType.getText());
+
+        cmbRoomId.setValue(null);
+        cmbRoomId.setDisable(true);
+        checkRoomId.selectedProperty().setValue(true);
         checkRoomType.selectedProperty().setValue(false);
     }
 
     public void btnAddRoomIdOnAction(ActionEvent actionEvent) {
+        cmbRoomId.getItems().add(txtRoomId.getText());
+        cmbRoomId.getSelectionModel().select(txtRoomId.getText());
+        cmbRoomId.setDisable(false);
         checkRoomId.selectedProperty().setValue(false);
 
     }
