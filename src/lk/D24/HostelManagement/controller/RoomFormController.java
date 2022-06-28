@@ -53,6 +53,8 @@ public class RoomFormController {
         tblRoom.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("qty"));
 
 
+        cmbRoomId.setEditable(false);
+
         btnAddRoomType.setDisable(true);
         txtRoomType.setDisable(true);
         recType.setDisable(true);
@@ -61,12 +63,14 @@ public class RoomFormController {
         txtRoomId.setDisable(true);
         recId.setDisable(true);
 
+
         txtKeyMoney.setEditable(false);
 
 
         loadAllRooms();
         setCmbRoomTypes();
         addRoomTypeSelectListener();
+        setCmbRoomIds();
 
 
         enableDisableCheckBox(checkRoomType, btnAddRoomType, txtRoomType, recType);
@@ -86,7 +90,6 @@ public class RoomFormController {
                 btnAdd.setDisable(true);
                 txtRoom.setDisable(true);
                 rectangle.setDisable(true);
-                txtKeyMoney.clear();
                 txtKeyMoney.setEditable(false);
             }
         });
@@ -99,7 +102,8 @@ public class RoomFormController {
                 try {
                     for (Room room : roomBO.getRoomDataFromType(newValue)) {
 
-                        txtRoomId.setText(room.getRoomTypeId());
+//                        txtRoomId.setText(room.getRoomTypeId());
+                        cmbRoomId.getSelectionModel().select(room.getRoomTypeId());
                         txtKeyMoney.setText(String.valueOf(room.getKeyMoney()));
 
                     }
@@ -132,6 +136,12 @@ public class RoomFormController {
 
     }
 
+    private void setCmbRoomIds() throws IOException {
+        for (RoomDTO roomDTO : roomBO.getAllRoom()) {
+            cmbRoomId.getItems().add(roomDTO.getRoomTypeId());
+        }
+
+    }
     public void menuEditOnAction(ActionEvent actionEvent) {
     }
 
