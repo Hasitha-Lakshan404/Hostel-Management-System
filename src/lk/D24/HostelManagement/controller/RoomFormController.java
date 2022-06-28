@@ -14,8 +14,8 @@ import javafx.scene.shape.Rectangle;
 import lk.D24.HostelManagement.bo.custom.RoomBO;
 import lk.D24.HostelManagement.bo.custom.impl.RoomBOImpl;
 import lk.D24.HostelManagement.dto.RoomDTO;
+import lk.D24.HostelManagement.entity.Room;
 import lk.D24.HostelManagement.view.tdm.RoomTM;
-import lk.D24.HostelManagement.view.tdm.StudentTM;
 
 import java.io.IOException;
 
@@ -61,10 +61,12 @@ public class RoomFormController {
         txtRoomId.setDisable(true);
         recId.setDisable(true);
 
+        txtKeyMoney.setEditable(false);
 
 
         loadAllRooms();
-        cmbRoomType.getItems().setAll("Non-AC","Non-AC/Food","AC","AC/Food");
+        setCmbRoomTypes();
+        addRoomTypeSelectListener();
 
 
         enableDisableCheckBox(checkRoomType, btnAddRoomType, txtRoomType, recType);
@@ -74,16 +76,41 @@ public class RoomFormController {
 
     private void enableDisableCheckBox(JFXCheckBox checkBox, JFXButton btnAdd, JFXTextField txtRoom, Rectangle rectangle) {
         checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue){
+            if (newValue) {
                 btnAdd.setDisable(false);
                 txtRoom.setDisable(false);
                 rectangle.setDisable(false);
-            }else{
+                txtKeyMoney.clear();
+                txtKeyMoney.setEditable(true);
+            } else {
                 btnAdd.setDisable(true);
                 txtRoom.setDisable(true);
                 rectangle.setDisable(true);
+                txtKeyMoney.clear();
+                txtKeyMoney.setEditable(false);
             }
         });
+    }
+
+    private void addRoomTypeSelectListener() {
+        cmbRoomType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+
+            if (newValue != null) {
+                try {
+                    for (Room room : roomBO.getRoomDataFromType(newValue)) {
+
+                        txtRoomId.setText(room.getRoomTypeId());
+                        txtKeyMoney.setText(String.valueOf(room.getKeyMoney()));
+
+                    }
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        });
+
     }
 
     public void loadAllRooms() throws IOException {
@@ -94,6 +121,13 @@ public class RoomFormController {
                     roomDTO.getKeyMoney(),
                     roomDTO.getQty()
             ));
+        }
+
+    }
+
+    private void setCmbRoomTypes() throws IOException {
+        for (RoomDTO roomDTO : roomBO.getAllRoom()) {
+            cmbRoomType.getItems().add(roomDTO.getType());
         }
 
     }
@@ -130,5 +164,14 @@ public class RoomFormController {
     }
 
     public void searchDetails(KeyEvent keyEvent) {
+    }
+
+    public void btnAddRoomTypeOnAction(ActionEvent actionEvent) {
+        checkRoomType.selectedProperty().setValue(false);
+    }
+
+    public void btnAddRoomIdOnAction(ActionEvent actionEvent) {
+        checkRoomId.selectedProperty().setValue(false);
+
     }
 }

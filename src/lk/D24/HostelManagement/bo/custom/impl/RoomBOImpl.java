@@ -10,6 +10,7 @@ import lk.D24.HostelManagement.entity.Student;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author : Hasitha Lakshan
@@ -63,6 +64,10 @@ public class RoomBOImpl implements RoomBO {
     @Override
     public boolean deleteRoom(String id) throws IOException {
         return roomDAO.delete(id);
+    }
+
+    public List<Room> getRoomDataFromType(String type) throws IOException {
+        return roomDAO.getRoomDataFromType(type);
     }
 
     @Override

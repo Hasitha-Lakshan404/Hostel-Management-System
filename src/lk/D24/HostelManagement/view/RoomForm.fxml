@@ -57,32 +57,32 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="42.0" layoutX="406.0" layoutY="441.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="1139.0" />
       <Line endX="100.0" layoutX="356.0" layoutY="452.0" startX="100.0" startY="21.0" />
       <TextField fx:id="txtSearchRoom" layoutX="471.0" layoutY="447.0" onKeyReleased="#searchDetails" prefHeight="31.0" prefWidth="1065.0" promptText="Search by  Room Id , Type" />
-      <Separator layoutX="77.0" layoutY="314.0" prefHeight="6.0" prefWidth="1356.0" />
+      <Separator layoutX="92.0" layoutY="343.0" prefHeight="6.0" prefWidth="886.0" />
       <Label layoutX="83.0" layoutY="44.0" text="Room Type">
          <font>
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="79.0" layoutY="81.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
-      <Label layoutX="90.0" layoutY="365.0" text="KeyMoney">
+      <Label layoutX="1050.0" layoutY="50.0" text="KeyMoney">
          <font>
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="86.0" layoutY="396.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
-      <JFXTextField fx:id="txtKeyMoney" layoutX="101.0" layoutY="408.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="ex : RS 0000/=" />
-      <Label layoutX="90.0" layoutY="511.0" text="QTY">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="1046.0" layoutY="81.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
+      <JFXTextField fx:id="txtKeyMoney" layoutX="1061.0" layoutY="93.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="ex : RS 0000/=" />
+      <Label layoutX="83.0" layoutY="395.0" text="QTY">
          <font>
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="86.0" layoutY="542.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
-      <JFXTextField fx:id="txtQty" layoutX="101.0" layoutY="554.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="ex : 00" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="79.0" layoutY="426.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
+      <JFXTextField fx:id="txtQty" layoutX="94.0" layoutY="438.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="ex : 00" />
       <JFXComboBox fx:id="cmbRoomType" layoutX="95.0" layoutY="93.0" prefHeight="31.0" prefWidth="231.0" promptText="  Room Type" />
       <Label layoutX="388.0" layoutY="99.0" text="OR" />
       <Rectangle fx:id="recType" arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="469.0" layoutY="83.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
       <JFXTextField fx:id="txtRoomType" layoutX="484.0" layoutY="95.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="ex : AC/Food" />
-      <JFXButton id="effect" fx:id="btnAddRoomType" layoutX="775.0" layoutY="90.0" prefHeight="44.0" prefWidth="200.0" ripplerFill="#39c2ae" style="-fx-background-color: #52d0f7;" text="Add Room Type">
+      <JFXButton id="effect" fx:id="btnAddRoomType" layoutX="775.0" layoutY="90.0" onAction="#btnAddRoomTypeOnAction" prefHeight="44.0" prefWidth="200.0" ripplerFill="#39c2ae" style="-fx-background-color: #52d0f7;" text="Add Room Type">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -101,7 +101,7 @@
       <JFXComboBox fx:id="cmbRoomId" layoutX="101.0" layoutY="254.0" prefHeight="31.0" prefWidth="231.0" promptText="  Room Id" />
       <Label layoutX="394.0" layoutY="260.0" text="OR" />
       <JFXCheckBox fx:id="checkRoomId" layoutX="467.0" layoutY="211.0" text="Add new Room Id" underline="true" />
-      <JFXButton id="effect" fx:id="btnAddRoomId" layoutX="775.0" layoutY="252.0" prefHeight="44.0" prefWidth="200.0" ripplerFill="#39c2ae" style="-fx-background-color: #52d0f7;" text="Add Room Id">
+      <JFXButton id="effect" fx:id="btnAddRoomId" layoutX="775.0" layoutY="252.0" onAction="#btnAddRoomIdOnAction" prefHeight="44.0" prefWidth="200.0" ripplerFill="#39c2ae" style="-fx-background-color: #52d0f7;" text="Add Room Id">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -110,5 +110,6 @@
             </ImageView>
          </graphic>
       </JFXButton>
+      <Separator layoutX="83.0" layoutY="175.0" prefHeight="6.0" prefWidth="886.0" />
    </children>
 </AnchorPane>

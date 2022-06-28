@@ -6,11 +6,9 @@ import lk.D24.HostelManagement.util.FactoryConfiguration;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.io.IOException;
-import java.time.LocalDate;
-
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,8 +76,28 @@ public class RoomDAOImpl implements RoomDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
+        transaction.commit();
+        session.close();
         return null;
     }
+
+    @Override
+    public List<Room> getRoomDataFromType(String type) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        String hql = "FROM Room WHERE type = :pType";
+        Query query = session.createQuery(hql);
+
+        query.setParameter("pType", type);
+        List<Room> room = query.list();
+
+        transaction.commit();
+        session.close();
+
+        return room;
+    }
+
 
     @Override
     public Room search(String id) {
