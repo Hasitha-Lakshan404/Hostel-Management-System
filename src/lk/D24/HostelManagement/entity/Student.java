@@ -41,5 +41,6 @@ public class Student {
         this.telNo = telNo;
         this.dob = dob;
         this.gender = gender;
+
     }
 }

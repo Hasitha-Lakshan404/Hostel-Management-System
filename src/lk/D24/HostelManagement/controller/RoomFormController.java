@@ -1,6 +1,7 @@
 package lk.D24.HostelManagement.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -9,6 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.shape.Rectangle;
 import lk.D24.HostelManagement.bo.custom.RoomBO;
 import lk.D24.HostelManagement.bo.custom.impl.RoomBOImpl;
 import lk.D24.HostelManagement.dto.RoomDTO;
@@ -32,6 +34,15 @@ public class RoomFormController {
     public JFXTextField txtKeyMoney;
     public JFXTextField txtQty;
     public JFXComboBox<String> cmbRoomType;
+    public JFXTextField txtRoomId1;
+    public JFXButton btnAddRoomType;
+    public JFXCheckBox checkRoomType;
+    public JFXCheckBox checkRoomId;
+    public JFXButton btnAddRoomId;
+    public JFXComboBox<String> cmbRoomId;
+    public JFXTextField txtRoomType;
+    public Rectangle recType;
+    public Rectangle recId;
 
     RoomBO roomBO = new RoomBOImpl();
 
@@ -41,8 +52,38 @@ public class RoomFormController {
         tblRoom.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("keyMoney"));
         tblRoom.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("qty"));
 
+
+        btnAddRoomType.setDisable(true);
+        txtRoomType.setDisable(true);
+        recType.setDisable(true);
+
+        btnAddRoomId.setDisable(true);
+        txtRoomId.setDisable(true);
+        recId.setDisable(true);
+
+
+
         loadAllRooms();
         cmbRoomType.getItems().setAll("Non-AC","Non-AC/Food","AC","AC/Food");
+
+
+        enableDisableCheckBox(checkRoomType, btnAddRoomType, txtRoomType, recType);
+
+        enableDisableCheckBox(checkRoomId, btnAddRoomId, txtRoomId, recId);
+    }
+
+    private void enableDisableCheckBox(JFXCheckBox checkBox, JFXButton btnAdd, JFXTextField txtRoom, Rectangle rectangle) {
+        checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue){
+                btnAdd.setDisable(false);
+                txtRoom.setDisable(false);
+                rectangle.setDisable(false);
+            }else{
+                btnAdd.setDisable(true);
+                txtRoom.setDisable(true);
+                rectangle.setDisable(true);
+            }
+        });
     }
 
     public void loadAllRooms() throws IOException {
