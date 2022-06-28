@@ -3,6 +3,8 @@ package lk.D24.HostelManagement.dao.custom;
 import lk.D24.HostelManagement.dao.CrudDAO;
 import lk.D24.HostelManagement.entity.Student;
 
+import java.io.IOException;
+
 /**
  * @author : Hasitha Lakshan
  * Project :Hostel_Management_System
@@ -11,4 +13,5 @@ import lk.D24.HostelManagement.entity.Student;
  */
 
 public interface StudentDAO extends CrudDAO<Student,String> {
+    public Student getStudent(String id) throws IOException;
 }
