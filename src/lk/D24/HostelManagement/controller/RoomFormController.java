@@ -73,19 +73,25 @@ public class RoomFormController {
         setCmbRoomIds();
 
 
-        enableDisableCheckBox(checkRoomType, btnAddRoomType, txtRoomType, recType);
+        enableDisableCheckBox(checkRoomType, btnAddRoomType, txtRoomType, recType,cmbRoomType);
 
-        enableDisableCheckBox(checkRoomId, btnAddRoomId, txtRoomId, recId);
+        enableDisableCheckBox(checkRoomId, btnAddRoomId, txtRoomId, recId,cmbRoomId);
     }
 
-    private void enableDisableCheckBox(JFXCheckBox checkBox, JFXButton btnAdd, JFXTextField txtRoom, Rectangle rectangle) {
+    private void enableDisableCheckBox(JFXCheckBox checkBox, JFXButton btnAdd, JFXTextField txtRoom, Rectangle rectangle,JFXComboBox combo) {
         checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
                 btnAdd.setDisable(false);
                 txtRoom.setDisable(false);
                 rectangle.setDisable(false);
-//                txtKeyMoney.clear();
+
                 txtKeyMoney.setEditable(true);
+                combo.setValue(null);
+
+                if(checkBox.getText().equals("Add new Room Type")){
+                    txtKeyMoney.clear();
+                }
+
             } else {
                 btnAdd.setDisable(true);
                 txtRoom.setDisable(true);
@@ -117,6 +123,7 @@ public class RoomFormController {
     }
 
     public void loadAllRooms() throws IOException {
+        tblRoom.getItems().clear();
         for (RoomDTO roomDTO : roomBO.getAllRoom()) {
             tblRoom.getItems().add(new RoomTM(
                     roomDTO.getRoomTypeId(),
@@ -129,6 +136,7 @@ public class RoomFormController {
     }
 
     private void setCmbRoomTypes() throws IOException {
+        cmbRoomType.getItems().clear();
         for (RoomDTO roomDTO : roomBO.getAllRoom()) {
             cmbRoomType.getItems().add(roomDTO.getType());
         }
@@ -136,6 +144,7 @@ public class RoomFormController {
     }
 
     private void setCmbRoomIds() throws IOException {
+        cmbRoomId.getItems().clear();
         for (RoomDTO roomDTO : roomBO.getAllRoom()) {
             cmbRoomId.getItems().add(roomDTO.getRoomTypeId());
         }
@@ -152,6 +161,8 @@ public class RoomFormController {
         if (roomBO.deleteRoom(selectedItem.getRoomTypeId())) {
             new Alert(Alert.AlertType.CONFIRMATION, "Student Deleted SuccessFully").show();
             loadAllRooms();
+            setCmbRoomTypes();
+            setCmbRoomIds();
         } else {
             new Alert(Alert.AlertType.WARNING, "Something Went Wring !!").show();
 
@@ -159,18 +170,44 @@ public class RoomFormController {
     }
 
     public void textFieldValidationOnAction(KeyEvent keyEvent) {
+
     }
 
     public void RoomAddOnAction(ActionEvent actionEvent) throws IOException {
-        roomBO.saveRoom(new RoomDTO(
-                txtRoomId.getText(),
-                cmbRoomType.getValue(),
-                Double.parseDouble(txtKeyMoney.getText()),
-                Integer.parseInt(txtQty.getText())
-        ));
+        boolean b=true;
+        for (RoomDTO roomDTO : roomBO.getAllRoom()) {
+            if(roomDTO.getRoomTypeId().equals(cmbRoomId.getValue())){
+                b=false;
+            }
+        }
+
+        if(b){
+            roomBO.saveRoom(new RoomDTO(
+                    cmbRoomId.getValue(),
+                    cmbRoomType.getValue(),
+                    Double.parseDouble(txtKeyMoney.getText()),
+                    Integer.parseInt(txtQty.getText())
+            ));
+            clear();
+            loadAllRooms();
+        }else{
+
+            //getQTY
+            Room room = roomBO.getRoom(cmbRoomId.getValue());
+            roomBO.updateRoom(new RoomDTO(
+                    cmbRoomId.getValue(),
+                    cmbRoomType.getValue(),
+                    Double.parseDouble(txtKeyMoney.getText()),
+                    (room.getQty()+(Integer.parseInt(txtQty.getText()))
+            )));
+            clear();
+            loadAllRooms();
+        }
+
     }
 
     public void RoomClearOnAction(ActionEvent actionEvent) {
+
     }
 
     public void searchDetails(KeyEvent keyEvent) {
@@ -186,6 +223,15 @@ public class RoomFormController {
         checkRoomType.selectedProperty().setValue(false);
     }
 
+    private void clear(){
+        cmbRoomType.setValue(null);
+        txtRoomType.clear();
+        txtKeyMoney.clear();
+        cmbRoomId.setValue(null);
+        txtRoomId.clear();
+        txtQty.clear();
+    }
+
     public void btnAddRoomIdOnAction(ActionEvent actionEvent) {
         cmbRoomId.getItems().add(txtRoomId.getText());
         cmbRoomId.getSelectionModel().select(txtRoomId.getText());
@@ -193,4 +239,5 @@ public class RoomFormController {
         checkRoomId.selectedProperty().setValue(false);
 
     }
+
 }

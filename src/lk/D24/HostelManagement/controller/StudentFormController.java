@@ -153,7 +153,6 @@ public class StudentFormController {
     public void menuDeleteOnAction(ActionEvent actionEvent) throws IOException {
 
         StudentTM selectedItem = tblStudent.getSelectionModel().getSelectedItem();
-        System.out.println(selectedItem.getStudentId());
         if (studentBO.deleteStudent(selectedItem.getStudentId())) {
             new Alert(Alert.AlertType.CONFIRMATION, "Student Deleted SuccessFully").show();
             getAllStudent();

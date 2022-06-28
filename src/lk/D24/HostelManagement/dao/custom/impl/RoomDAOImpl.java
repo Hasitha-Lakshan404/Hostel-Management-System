@@ -98,6 +98,18 @@ public class RoomDAOImpl implements RoomDAO {
         return room;
     }
 
+    @Override
+    public Room getRoom(String id) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Room room = session.get(Room.class, id);
+
+        transaction.commit();
+        session.close();
+
+        return room;
+    }
 
     @Override
     public Room search(String id) {

@@ -27,4 +27,6 @@ public interface RoomBO {
     String generateRoomId();
 
     public List<Room> getRoomDataFromType(String type) throws IOException;
+
+    public Room getRoom(String id) throws IOException;
 }

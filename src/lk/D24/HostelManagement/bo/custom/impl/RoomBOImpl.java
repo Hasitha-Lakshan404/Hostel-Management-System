@@ -71,6 +71,11 @@ public class RoomBOImpl implements RoomBO {
     }
 
     @Override
+    public Room getRoom(String id) throws IOException {
+        return roomDAO.getRoom(id);
+    }
+
+    @Override
     public String generateRoomId() {
         return null;
     }
