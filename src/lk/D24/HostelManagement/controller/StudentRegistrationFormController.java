@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import lk.D24.HostelManagement.bo.custom.ReservationBO;
@@ -52,6 +53,7 @@ public class StudentRegistrationFormController {
 
     public void initialize() throws IOException {
 
+        lblAvailable.setText("................");
         cmbGender.getItems().addAll("Male","FeMale");
 
         for (StudentDTO dto : reservationBO.getAllStudent()) {
@@ -88,6 +90,12 @@ public class StudentRegistrationFormController {
                     int remainQty=Integer.parseInt(txtQty.getText())-count;
                     lblUsedRooms.setText(String.valueOf(count));
                     lblRemainingRooms.setText(String.valueOf(remainQty));
+
+                    if(remainQty==0){
+                        lblAvailable.setText("Un-Available");
+                    }else{
+                        lblAvailable.setText("Available");
+                    }
 
 
                 } catch (IOException e) {
@@ -129,22 +137,26 @@ public class StudentRegistrationFormController {
     }
 
     public void RegisterOnAction(ActionEvent actionEvent) throws IOException {
-        Student student = new Student();
-        student.setStudentId(cmbSelectStudent.getValue());
+        if(lblAvailable.getText().equalsIgnoreCase("Available")) {
+            Student student = new Student();
+            student.setStudentId(cmbSelectStudent.getValue());
 
-        Room room = new Room();
-        room.setRoomTypeId(cmbSelectRoom.getValue());
-        reservationBO.registerStudent(new ReserveDTO(
-                txtRegistrationId.getText(),
-                LocalDate.now(),
-                student,
-                room,
-                txtStatus.getText()
-        ));
-        clear();
-        lblAllRooms.setText("00");
-        lblUsedRooms.setText("00");
-        lblRemainingRooms.setText("00");
+            Room room = new Room();
+            room.setRoomTypeId(cmbSelectRoom.getValue());
+            reservationBO.registerStudent(new ReserveDTO(
+                    txtRegistrationId.getText(),
+                    LocalDate.now(),
+                    student,
+                    room,
+                    txtStatus.getText()
+            ));
+            clear();
+            lblAllRooms.setText("00");
+            lblUsedRooms.setText("00");
+            lblRemainingRooms.setText("00");
+        }else{
+           new  Alert(Alert.AlertType.WARNING,"You Can't Register Student for This Room").show();
+        }
     }
 
     public void ClearOnAction(ActionEvent actionEvent) {
