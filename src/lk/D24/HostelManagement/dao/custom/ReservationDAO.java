@@ -1,5 +1,11 @@
 package lk.D24.HostelManagement.dao.custom;
 
+import lk.D24.HostelManagement.dao.CrudDAO;
+import lk.D24.HostelManagement.entity.Reserve;
+
+import java.io.IOException;
+import java.util.List;
+
 /**
  * @author : Hasitha Lakshan
  * Project Name: Hostel_Management_System
@@ -7,5 +13,6 @@ package lk.D24.HostelManagement.dao.custom;
  * Time        : 1:47 AM
  */
 
-public interface ReservationDAO {
+public interface ReservationDAO extends CrudDAO<Reserve, String> {
+    public List<Reserve> searchReservedRoomById (String id) throws IOException;
 }

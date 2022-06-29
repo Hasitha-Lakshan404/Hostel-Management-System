@@ -5,17 +5,21 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import lk.D24.HostelManagement.bo.custom.ReservationBO;
 import lk.D24.HostelManagement.bo.custom.RoomBO;
 import lk.D24.HostelManagement.bo.custom.impl.ReservationBOImpl;
 import lk.D24.HostelManagement.bo.custom.impl.RoomBOImpl;
+import lk.D24.HostelManagement.dto.ReserveDTO;
 import lk.D24.HostelManagement.dto.RoomDTO;
 import lk.D24.HostelManagement.dto.StudentDTO;
 import lk.D24.HostelManagement.entity.Room;
 import lk.D24.HostelManagement.entity.Student;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
 
 /**
  * @author : Hasitha Lakshan
@@ -36,6 +40,12 @@ public class StudentRegistrationFormController {
     public JFXTextField txtRoomType;
     public JFXTextField txtKeyMoney;
     public JFXTextField txtQty;
+    public JFXTextField txtStatus;
+
+    public Label lblAvailable;
+    public Label lblAllRooms;
+    public Label lblUsedRooms;
+    public Label lblRemainingRooms;
 
 
     ReservationBO reservationBO=new ReservationBOImpl();
@@ -65,6 +75,24 @@ public class StudentRegistrationFormController {
                 txtRoomType.setText(room.getType());
                 txtKeyMoney.setText(String.valueOf(room.getKeyMoney()));
                 txtQty.setText(String.valueOf(room.getQty()));
+                lblAllRooms.setText(String.valueOf(room.getQty()));
+
+                try {
+                    List<ReserveDTO> reserveDTOS = reservationBO.searchReservedRoomById(newValue);
+
+                    int count=0;
+                    for (ReserveDTO reserveDTO : reserveDTOS) {
+                        count++;
+                    }
+                    System.out.println(count);
+                    int remainQty=Integer.parseInt(txtQty.getText())-count;
+                    lblUsedRooms.setText(String.valueOf(count));
+                    lblRemainingRooms.setText(String.valueOf(remainQty));
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
 
@@ -86,17 +114,45 @@ public class StudentRegistrationFormController {
                 dateDOB.setValue(student.getDob());
             }
 
-
         });
+
+        searchRoomQty();
+    }
+
+
+    private void searchRoomQty(){
+
     }
 
     public void textFieldValidationOnAction(KeyEvent keyEvent) {
 
     }
 
-    public void RegisterOnAction(ActionEvent actionEvent) {
+    public void RegisterOnAction(ActionEvent actionEvent) throws IOException {
+        Student student = new Student();
+        student.setStudentId(cmbSelectStudent.getValue());
+
+        Room room = new Room();
+        room.setRoomTypeId(cmbSelectRoom.getValue());
+        reservationBO.registerStudent(new ReserveDTO(
+                txtRegistrationId.getText(),
+                LocalDate.now(),
+                student,
+                room,
+                txtStatus.getText()
+        ));
+        clear();
+        lblAllRooms.setText("00");
+        lblUsedRooms.setText("00");
+        lblRemainingRooms.setText("00");
     }
 
     public void ClearOnAction(ActionEvent actionEvent) {
+        clear();
+    }
+    private void clear(){
+        cmbSelectStudent.setValue(null);
+        cmbSelectRoom.setValue(null);
+        txtStatus.clear();
     }
 }

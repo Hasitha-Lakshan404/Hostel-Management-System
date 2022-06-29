@@ -1,17 +1,22 @@
 package lk.D24.HostelManagement.bo.custom.impl;
 
 import lk.D24.HostelManagement.bo.custom.ReservationBO;
+import lk.D24.HostelManagement.dao.custom.ReservationDAO;
 import lk.D24.HostelManagement.dao.custom.RoomDAO;
 import lk.D24.HostelManagement.dao.custom.StudentDAO;
+import lk.D24.HostelManagement.dao.custom.impl.ReservationDAOImpl;
 import lk.D24.HostelManagement.dao.custom.impl.RoomDAOImpl;
 import lk.D24.HostelManagement.dao.custom.impl.StudentDAOImpl;
+import lk.D24.HostelManagement.dto.ReserveDTO;
 import lk.D24.HostelManagement.dto.RoomDTO;
 import lk.D24.HostelManagement.dto.StudentDTO;
+import lk.D24.HostelManagement.entity.Reserve;
 import lk.D24.HostelManagement.entity.Room;
 import lk.D24.HostelManagement.entity.Student;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author : Hasitha Lakshan
@@ -21,10 +26,10 @@ import java.util.ArrayList;
  */
 
 
-
 public class ReservationBOImpl implements ReservationBO {
-    RoomDAO roomDAO=new RoomDAOImpl();
-    StudentDAO studentDAO=new StudentDAOImpl();
+    RoomDAO roomDAO = new RoomDAOImpl();
+    StudentDAO studentDAO = new StudentDAOImpl();
+    ReservationDAO reservationDAO=new ReservationDAOImpl();
 
     @Override
     public Room getRoom(String id) throws IOException {
@@ -73,6 +78,37 @@ public class ReservationBOImpl implements ReservationBO {
         }
 
         return allRoom;
+    }
+
+
+    @Override
+    public List<ReserveDTO> searchReservedRoomById(String id) throws IOException {
+        List<Reserve> reserves = reservationDAO.searchReservedRoomById(id);
+
+        List<ReserveDTO> reserveDTOS=new ArrayList<>();
+
+        for (Reserve reserve : reserves) {
+            reserveDTOS.add(new ReserveDTO(
+                    reserve.getResId(),
+                    reserve.getDate(),
+                    reserve.getStudent(),
+                    reserve.getRoom(),
+                    reserve.getStatus()
+            ));
+
+        }
+        return reserveDTOS;
+    }
+
+    @Override
+    public boolean registerStudent(ReserveDTO dto) throws IOException {
+        return reservationDAO.save(new Reserve(
+                dto.getResId(),
+                dto.getDate(),
+                dto.getStudentId(),
+                dto.getRoomId(),
+                dto.getStatus()
+        ));
     }
 
 }

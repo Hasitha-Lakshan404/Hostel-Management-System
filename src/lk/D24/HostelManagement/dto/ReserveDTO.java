@@ -1,5 +1,7 @@
 package lk.D24.HostelManagement.dto;
 
+import lk.D24.HostelManagement.entity.Room;
+import lk.D24.HostelManagement.entity.Student;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,8 +22,8 @@ import java.time.LocalDate;
 public class ReserveDTO {
     String resId;
     LocalDate date;
-    String studentId;
-    String roomId;
+    Student studentId;
+    Room roomId;
     String status;
 
 

@@ -14,37 +14,37 @@
 <AnchorPane prefHeight="968.0" prefWidth="1838.0" style="-fx-background-color: #e1e1e1;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.D24.HostelManagement.controller.StudentRegistrationFormController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="430.0" layoutX="1204.0" layoutY="336.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="512.0" />
-      <JFXComboBox fx:id="cmbSelectStudent" layoutX="123.0" layoutY="236.0" prefHeight="31.0" prefWidth="279.0" promptText="   Select Student" />
-      <JFXComboBox fx:id="cmbSelectRoom" layoutX="661.0" layoutY="236.0" prefHeight="31.0" prefWidth="279.0" promptText="   Select Room " />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="128.0" layoutY="829.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
-      <Label layoutX="129.0" layoutY="341.0" text="Name">
+      <JFXComboBox fx:id="cmbSelectStudent" layoutX="125.0" layoutY="147.0" prefHeight="31.0" prefWidth="279.0" promptText="   Select Student" />
+      <JFXComboBox fx:id="cmbSelectRoom" layoutX="663.0" layoutY="147.0" prefHeight="31.0" prefWidth="279.0" promptText="   Select Room " />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="130.0" layoutY="817.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
+      <Label layoutX="131.0" layoutY="286.0" text="Name">
          <font>
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="125.0" layoutY="372.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
-      <JFXTextField fx:id="txtStudentName" layoutX="140.0" layoutY="384.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="ex ;Hasitha Lakshan" />
-      <Label layoutX="129.0" layoutY="496.0" text="Address">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="127.0" layoutY="317.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
+      <JFXTextField fx:id="txtStudentName" layoutX="142.0" layoutY="329.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="ex ;Hasitha Lakshan" />
+      <Label layoutX="131.0" layoutY="461.0" text="Address">
          <font>
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="125.0" layoutY="527.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
-      <JFXTextField fx:id="txtAddress" layoutX="140.0" layoutY="539.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="ex : Bandaragama" />
-      <JFXDatePicker fx:id="dateDOB" layoutX="144.0" layoutY="842.0" prefHeight="31.0" prefWidth="231.0" promptText="Date of Birth" />
-      <Label layoutX="132.0" layoutY="798.0" text="DOB">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="127.0" layoutY="492.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
+      <JFXTextField fx:id="txtAddress" layoutX="142.0" layoutY="504.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="ex : Bandaragama" />
+      <JFXDatePicker fx:id="dateDOB" layoutX="146.0" layoutY="830.0" prefHeight="31.0" prefWidth="231.0" promptText="Date of Birth" />
+      <Label layoutX="134.0" layoutY="786.0" text="DOB">
          <font>
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="125.0" layoutY="684.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
-      <Label layoutX="129.0" layoutY="653.0" text="Gender">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="127.0" layoutY="664.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
+      <Label layoutX="131.0" layoutY="633.0" text="Gender">
          <font>
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="cmbGender" layoutX="139.0" layoutY="695.0" prefHeight="31.0" prefWidth="231.0" promptText="ex : Male" />
-      <JFXTextField fx:id="txtRegistrationId" layoutX="748.0" layoutY="103.0" prefHeight="31.0" prefWidth="385.0" promptText="  Regisration Id  " />
+      <JFXComboBox fx:id="cmbGender" layoutX="141.0" layoutY="675.0" prefHeight="31.0" prefWidth="231.0" promptText="ex : Male" />
+      <JFXTextField fx:id="txtRegistrationId" layoutX="1251.0" layoutY="147.0" prefHeight="31.0" prefWidth="385.0" promptText="  Regisration Id  " />
       <JFXButton id="effect" fx:id="btnRegister" layoutX="1214.0" layoutY="833.0" onAction="#RegisterOnAction" prefHeight="50.0" prefWidth="212.0" ripplerFill="#39c2ae" style="-fx-background-color: #52d0f7;" text="Register Student">
          <graphic>
             <ImageView fitHeight="29.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
@@ -63,35 +63,73 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <Label layoutX="665.0" layoutY="343.0" text="Room Type">
+      <Label layoutX="667.0" layoutY="288.0" text="Room Type">
          <font>
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="661.0" layoutY="374.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
-      <JFXTextField fx:id="txtRoomType" layoutX="676.0" layoutY="386.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="Type" />
-      <Label layoutX="665.0" layoutY="494.0" text="KeyMoney">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="663.0" layoutY="319.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
+      <JFXTextField fx:id="txtRoomType" layoutX="678.0" layoutY="331.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="Type" />
+      <Label layoutX="667.0" layoutY="459.0" text="KeyMoney">
          <font>
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="661.0" layoutY="525.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
-      <JFXTextField fx:id="txtKeyMoney" layoutX="676.0" layoutY="537.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="ex : RS 0000/=" />
-      <Label layoutX="670.0" layoutY="650.0" text="QTY">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="663.0" layoutY="490.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
+      <JFXTextField fx:id="txtKeyMoney" layoutX="678.0" layoutY="502.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="ex : RS 0000/=" />
+      <Label layoutX="672.0" layoutY="630.0" text="QTY">
          <font>
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="666.0" layoutY="681.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
-      <JFXTextField fx:id="txtQty" layoutX="681.0" layoutY="693.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="ex : 00" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="668.0" layoutY="661.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
+      <JFXTextField fx:id="txtQty" layoutX="683.0" layoutY="673.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="ex : 00" />
       <Label layoutX="1327.0" layoutY="366.0" text="R O O M   S T A T U S ">
          <font>
             <Font name="Bell MT Bold" size="27.0" />
          </font>
       </Label>
-      <Label layoutX="1395.0" layoutY="528.0" text="Available">
+      <Label fx:id="lblAvailable" layoutX="1395.0" layoutY="502.0" text="Available">
          <font>
             <Font name="Bell MT" size="37.0" />
+         </font>
+      </Label>
+      <Label layoutX="672.0" layoutY="785.0" text="Status">
+         <font>
+            <Font name="Bodoni MT" size="19.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="668.0" layoutY="816.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
+      <JFXTextField fx:id="txtStatus" layoutX="683.0" layoutY="828.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="ex : Paid/Non-Paid/Amount" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="112.0" layoutX="1219.0" layoutY="637.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="483.0" />
+      <Label layoutX="1249.0" layoutY="655.0" text="All Rooms">
+         <font>
+            <Font name="Bell MT" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="1394.0" layoutY="655.0" text="Used Rooms">
+         <font>
+            <Font name="Bell MT" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="1541.0" layoutY="655.0" text="Remaining Rooms">
+         <font>
+            <Font name="Bell MT" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAllRooms" alignment="CENTER" layoutX="1265.0" layoutY="690.0" prefHeight="22.0" prefWidth="52.0" text="00">
+         <font>
+            <Font name="Bell MT" size="31.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblUsedRooms" alignment="CENTER" layoutX="1417.0" layoutY="690.0" prefHeight="22.0" prefWidth="52.0" text="00">
+         <font>
+            <Font name="Bell MT" size="31.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblRemainingRooms" alignment="CENTER" layoutX="1579.0" layoutY="690.0" prefHeight="22.0" prefWidth="52.0" text="00">
+         <font>
+            <Font name="Bell MT" size="31.0" />
          </font>
       </Label>
    </children>

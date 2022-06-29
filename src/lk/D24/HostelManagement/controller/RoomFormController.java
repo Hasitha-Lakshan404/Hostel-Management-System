@@ -236,6 +236,7 @@ public class RoomFormController {
     }
 
     public void searchDetails(KeyEvent keyEvent) {
+        cmbRoomId.setDisable(true);
     }
 
     public void btnAddRoomTypeOnAction(ActionEvent actionEvent) {

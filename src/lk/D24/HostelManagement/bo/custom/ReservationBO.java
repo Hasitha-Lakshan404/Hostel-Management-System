@@ -1,5 +1,6 @@
 package lk.D24.HostelManagement.bo.custom;
 
+import lk.D24.HostelManagement.dto.ReserveDTO;
 import lk.D24.HostelManagement.dto.RoomDTO;
 import lk.D24.HostelManagement.dto.StudentDTO;
 import lk.D24.HostelManagement.entity.Room;
@@ -7,6 +8,7 @@ import lk.D24.HostelManagement.entity.Student;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author : Hasitha Lakshan
@@ -24,5 +26,7 @@ public interface ReservationBO {
 
     ArrayList<RoomDTO> getAllRoom() throws IOException;
 
+    public List<ReserveDTO> searchReservedRoomById(String id) throws IOException;
 
+    public boolean registerStudent(ReserveDTO dto) throws IOException;
 }
