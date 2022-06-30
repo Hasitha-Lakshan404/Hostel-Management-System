@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="968.0" prefWidth="1838.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.D24.HostelManagement.controller.RegisterDetailFormController">
+   <children>
+      <TableView id="effect" fx:id="tblReserve" layoutX="73.0" layoutY="484.0" prefHeight="377.0" prefWidth="1217.0">
+         <columns>
+            <TableColumn prefWidth="207.0" text="Resreve Id" />
+            <TableColumn prefWidth="274.0" text="Date" />
+            <TableColumn prefWidth="279.0" text="Studdent Id" />
+            <TableColumn prefWidth="224.0" text="RoomId" />
+            <TableColumn prefWidth="232.0" text="Status" />
+         </columns>
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#menuEditOnAction" text="Update" />
+                  <MenuItem mnemonicParsing="false" onAction="#menuDeleteOnAction" text="Delete" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+      </TableView>
+   </children>
+</AnchorPane>

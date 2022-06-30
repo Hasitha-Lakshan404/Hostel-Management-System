@@ -61,6 +61,7 @@ public class DashboardHomeFormController {
                 setUI("StudentRegistrationForm");
 
             }if(button.getId().equals("reservationDetailButton")){
+                setUI("RegisterDetailForm");
 
             }if(button.getId().equals("LogoutButton")){
 

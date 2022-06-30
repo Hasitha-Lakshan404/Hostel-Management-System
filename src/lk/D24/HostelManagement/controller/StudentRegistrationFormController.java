@@ -86,7 +86,7 @@ public class StudentRegistrationFormController {
                     for (ReserveDTO reserveDTO : reserveDTOS) {
                         count++;
                     }
-                    System.out.println(count);
+
                     int remainQty=Integer.parseInt(txtQty.getText())-count;
                     lblUsedRooms.setText(String.valueOf(count));
                     lblRemainingRooms.setText(String.valueOf(remainQty));
