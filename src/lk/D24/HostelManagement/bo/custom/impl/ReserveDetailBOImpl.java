@@ -1,16 +1,21 @@
 package lk.D24.HostelManagement.bo.custom.impl;
 
 import lk.D24.HostelManagement.bo.custom.ReserveDetailBO;
+import lk.D24.HostelManagement.bo.custom.StudentBO;
 import lk.D24.HostelManagement.dao.custom.ReservationDAO;
 import lk.D24.HostelManagement.dao.custom.RoomDAO;
+import lk.D24.HostelManagement.dao.custom.StudentDAO;
 import lk.D24.HostelManagement.dao.custom.impl.ReservationDAOImpl;
 import lk.D24.HostelManagement.dao.custom.impl.RoomDAOImpl;
+import lk.D24.HostelManagement.dao.custom.impl.StudentDAOImpl;
 import lk.D24.HostelManagement.dto.CustomDTO;
 import lk.D24.HostelManagement.dto.ReserveDTO;
 import lk.D24.HostelManagement.dto.RoomDTO;
+import lk.D24.HostelManagement.dto.StudentDTO;
 import lk.D24.HostelManagement.entity.CustomEntity;
 import lk.D24.HostelManagement.entity.Reserve;
 import lk.D24.HostelManagement.entity.Room;
+import lk.D24.HostelManagement.entity.Student;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +31,7 @@ public class ReserveDetailBOImpl implements ReserveDetailBO {
 
     ReservationDAO reservationDAO = new ReservationDAOImpl();
     RoomDAO roomDAO=new RoomDAOImpl();
+    StudentDAO studentDAO = new StudentDAOImpl();
 
     @Override
     public ArrayList<CustomDTO> getAllReservationDetails() throws IOException {
@@ -77,6 +83,27 @@ public class ReserveDetailBOImpl implements ReserveDetailBO {
         }
 
         return allRoom;
+    }
+
+    @Override
+    public ArrayList<StudentDTO> getAllStudent() throws IOException {
+
+        ArrayList<Student> all = studentDAO.getAll();
+
+        ArrayList<StudentDTO> allStudent = new ArrayList<>();
+
+        for (Student student : all) {
+            allStudent.add(new StudentDTO(
+                    student.getStudentId(),
+                    student.getName(),
+                    student.getAddress(),
+                    student.getTelNo(),
+                    student.getDob(),
+                    student.getGender()
+            ));
+        }
+
+        return allStudent;
     }
 
 }

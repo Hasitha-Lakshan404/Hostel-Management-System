@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -11,7 +12,10 @@ import javafx.scene.input.KeyEvent;
 import lk.D24.HostelManagement.bo.custom.ReserveDetailBO;
 import lk.D24.HostelManagement.bo.custom.impl.ReserveDetailBOImpl;
 import lk.D24.HostelManagement.dto.CustomDTO;
+import lk.D24.HostelManagement.dto.RoomDTO;
+import lk.D24.HostelManagement.dto.StudentDTO;
 import lk.D24.HostelManagement.view.tdm.ReserveDetailTM;
+import lk.D24.HostelManagement.view.tdm.RoomTM;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -49,6 +53,8 @@ public class RegisterDetailFormController {
         tblReserve.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("roomId"));
         tblReserve.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("status"));
         tblReserve.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("remainKeyMoney"));
+
+        loadCmbData();
     }
 
 
@@ -89,6 +95,27 @@ public class RegisterDetailFormController {
     }
 
     public void menuEditOnAction(ActionEvent actionEvent) {
+
+        ReserveDetailTM selectedItem = tblReserve.getSelectionModel().getSelectedItem();
+
+        txtReserveID.setText(selectedItem.getResId());
+        txtReserveID.setEditable(false);
+        cmbUpdateSelectStudent.getSelectionModel().select(selectedItem.getStudentId());
+        cmbUpdateSelectRoom.getSelectionModel().select(selectedItem.getRoomId());
+
+        txtUpdateStatus.setText(selectedItem.getStatus());
+
+    }
+
+    private void loadCmbData() throws IOException {
+        for (RoomDTO roomDTO : reserveDetailBO.getAllRoom()) {
+            cmbUpdateSelectRoom.getItems().add(roomDTO.getRoomTypeId());
+        }
+
+        for (StudentDTO dto : reserveDetailBO.getAllStudent()) {
+            cmbUpdateSelectStudent.getItems().add(dto.getStudentId());
+        }
+
     }
 
     public void menuDeleteOnAction(ActionEvent actionEvent) {

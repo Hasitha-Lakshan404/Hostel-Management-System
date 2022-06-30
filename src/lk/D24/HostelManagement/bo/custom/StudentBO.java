@@ -22,5 +22,7 @@ public interface StudentBO {
 
     boolean deleteStudent(String id) throws IOException;
 
+
+
     String generateStudentId();
 }
