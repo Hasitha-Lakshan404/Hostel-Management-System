@@ -4,20 +4,23 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import lk.D24.HostelManagement.bo.custom.ReserveDetailBO;
 import lk.D24.HostelManagement.bo.custom.impl.ReserveDetailBOImpl;
 import lk.D24.HostelManagement.dto.CustomDTO;
+import lk.D24.HostelManagement.dto.ReserveDTO;
 import lk.D24.HostelManagement.dto.RoomDTO;
 import lk.D24.HostelManagement.dto.StudentDTO;
+import lk.D24.HostelManagement.entity.Room;
+import lk.D24.HostelManagement.entity.Student;
 import lk.D24.HostelManagement.view.tdm.ReserveDetailTM;
-import lk.D24.HostelManagement.view.tdm.RoomTM;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -41,6 +44,8 @@ public class RegisterDetailFormController {
     public JFXCheckBox checkPaid;
     public JFXCheckBox checkNonPaid;
     public JFXCheckBox checkOtherPayment;
+
+    LocalDate date;
 
     ReserveDetailBO reserveDetailBO = new ReserveDetailBOImpl();
 
@@ -100,6 +105,7 @@ public class RegisterDetailFormController {
 
         txtReserveID.setText(selectedItem.getResId());
         txtReserveID.setEditable(false);
+        date = selectedItem.getDate();
         cmbUpdateSelectStudent.getSelectionModel().select(selectedItem.getStudentId());
         cmbUpdateSelectRoom.getSelectionModel().select(selectedItem.getRoomId());
 
@@ -124,7 +130,27 @@ public class RegisterDetailFormController {
     public void RoomClearOnAction(ActionEvent actionEvent) {
     }
 
-    public void btnReserveUpdateOnAction(ActionEvent actionEvent) {
+    public void btnReserveUpdateOnAction(ActionEvent actionEvent) throws IOException {
+        Student student = new Student();
+        student.setStudentId(cmbUpdateSelectStudent.getValue());
+
+        Room room = new Room();
+        room.setRoomTypeId(cmbUpdateSelectRoom.getValue());
+
+        boolean b = reserveDetailBO.updateReservation(new ReserveDTO(
+                txtReserveID.getText(),
+                date,
+                student,
+                room,
+                txtUpdateStatus.getText()));
+
+        if(b){
+            new Alert(Alert.AlertType.INFORMATION,"Reservation Updated!!").show();
+            loadAllReservation();
+        }else{
+            new Alert(Alert.AlertType.INFORMATION,"Something Went Wrong").show();
+
+        }
     }
 
     public void textFieldValidationOnAction(KeyEvent keyEvent) {

@@ -19,4 +19,5 @@ public interface ReserveDetailBO {
     ArrayList<CustomDTO> getAllReservationDetails() throws IOException;
     public ArrayList<RoomDTO> getAllRoom() throws IOException;
     public ArrayList<StudentDTO> getAllStudent() throws IOException;
+    boolean updateReservation(ReserveDTO dto) throws IOException;
 }

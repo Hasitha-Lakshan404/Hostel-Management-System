@@ -52,7 +52,13 @@ public class ReservationDAOImpl implements ReservationDAO {
 
     @Override
     public boolean update(Reserve entity) throws IOException {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.update(entity);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override

@@ -106,4 +106,16 @@ public class ReserveDetailBOImpl implements ReserveDetailBO {
         return allStudent;
     }
 
+    @Override
+    public boolean updateReservation(ReserveDTO dto) throws IOException {
+        return reservationDAO.update(new Reserve(
+                dto.getResId(),
+                dto.getDate(),
+                dto.getStudentId(),
+                dto.getRoomId(),
+                dto.getStatus()
+        ));
+    }
+
+
 }
