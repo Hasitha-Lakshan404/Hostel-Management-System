@@ -30,7 +30,7 @@ public class Reserve {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "roomTypeId",referencedColumnName = "roomTypeId")
     private Room room;
-    private String status;
 
+    private String status;
 
 }

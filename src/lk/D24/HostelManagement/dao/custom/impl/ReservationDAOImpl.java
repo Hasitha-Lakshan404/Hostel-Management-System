@@ -4,6 +4,7 @@ import lk.D24.HostelManagement.dao.custom.ReservationDAO;
 import lk.D24.HostelManagement.entity.Reserve;
 import lk.D24.HostelManagement.entity.Room;
 import lk.D24.HostelManagement.util.FactoryConfiguration;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -23,7 +24,19 @@ public class ReservationDAOImpl implements ReservationDAO {
 
     @Override
     public ArrayList<Reserve> getAll() throws IOException {
-        return null;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Criteria criteria = session.createCriteria(Reserve.class);
+        List reserve = criteria.list();
+
+        ArrayList<Reserve> custom = new ArrayList<>(reserve);
+
+
+        transaction.commit();
+        session.close();
+        return custom;
+
     }
 
     @Override
@@ -58,7 +71,7 @@ public class ReservationDAOImpl implements ReservationDAO {
     }
 
     @Override
-    public List<Reserve> searchReservedRoomById (String id) throws IOException {
+    public List<Reserve> searchReservedRoomById(String id) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -76,4 +89,5 @@ public class ReservationDAOImpl implements ReservationDAO {
 
         return r;
     }
+
 }

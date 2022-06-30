@@ -14,5 +14,5 @@ import java.util.List;
  */
 
 public interface ReservationDAO extends CrudDAO<Reserve, String> {
-    public List<Reserve> searchReservedRoomById (String id) throws IOException;
+    List<Reserve> searchReservedRoomById(String id) throws IOException;
 }

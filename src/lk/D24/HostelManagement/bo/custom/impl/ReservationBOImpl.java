@@ -29,7 +29,7 @@ import java.util.List;
 public class ReservationBOImpl implements ReservationBO {
     RoomDAO roomDAO = new RoomDAOImpl();
     StudentDAO studentDAO = new StudentDAOImpl();
-    ReservationDAO reservationDAO=new ReservationDAOImpl();
+    ReservationDAO reservationDAO = new ReservationDAOImpl();
 
     @Override
     public Room getRoom(String id) throws IOException {
@@ -85,7 +85,7 @@ public class ReservationBOImpl implements ReservationBO {
     public List<ReserveDTO> searchReservedRoomById(String id) throws IOException {
         List<Reserve> reserves = reservationDAO.searchReservedRoomById(id);
 
-        List<ReserveDTO> reserveDTOS=new ArrayList<>();
+        List<ReserveDTO> reserveDTOS = new ArrayList<>();
 
         for (Reserve reserve : reserves) {
             reserveDTOS.add(new ReserveDTO(
