@@ -95,8 +95,18 @@ public class RegisterDetailFormController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+                cmbSearchRoomId.setValue(null);
+                cmbRoomType.setValue(null);
             }
         });
+
+
+
+        txtReserveID.setDisable(true);
+        cmbUpdateSelectStudent.setDisable(true);
+        cmbUpdateSelectRoom.setDisable(true);
+        txtUpdateStatus.setDisable(true);
     }
 
     private void configureCheckBox(JFXCheckBox checkBox) {
@@ -158,6 +168,12 @@ public class RegisterDetailFormController {
 
     public void menuEditOnAction(ActionEvent actionEvent) {
 
+        txtReserveID.setDisable(false);
+        cmbUpdateSelectStudent.setDisable(false);
+        cmbUpdateSelectRoom.setDisable(false);
+        txtUpdateStatus.setDisable(false);
+
+
         ReserveDetailTM selectedItem = tblReserve.getSelectionModel().getSelectedItem();
 
         txtReserveID.setText(selectedItem.getResId());
@@ -193,6 +209,9 @@ public class RegisterDetailFormController {
                 try {
                     List<ReserveDTO> reserveDTOS = reserveDetailBO.searchReservedRoomById(newValue);
 
+                    checkPaid.selectedProperty().setValue(false);
+                    checkNonPaid.selectedProperty().setValue(false);
+                    checkOtherPayment.selectedProperty().setValue(false);
 
                     for (ReserveDTO reserveDTO : reserveDTOS) {
                         cmbRoomType.getSelectionModel().select(reserveDTO.getRoomId().getType());
@@ -240,6 +259,12 @@ public class RegisterDetailFormController {
     }
 
     public void btnReserveUpdateOnAction(ActionEvent actionEvent) throws IOException {
+
+        txtReserveID.setDisable(true);
+        cmbUpdateSelectStudent.setDisable(true);
+        cmbUpdateSelectRoom.setDisable(true);
+        txtUpdateStatus.setDisable(true);
+
         Student student = new Student();
         student.setStudentId(cmbUpdateSelectStudent.getValue());
 
@@ -280,40 +305,93 @@ public class RegisterDetailFormController {
         checkPaid.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 System.out.println("Paid clicked");
-                try {
-                    ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
-                    tblReserve.getItems().clear();
-                    for (CustomDTO all : allReservationDetails) {
 
-                        if(all.getStatus().equalsIgnoreCase("Paid")){
-                            String remain = "";
-                            String status = all.getStatus();
+                //======Select CheckBox with Filtered Room======
 
-                            if (status.equalsIgnoreCase("Paid")) {
-                                remain = "---";
-                            } else if (status.equalsIgnoreCase("Non-Paid")) {
-                                remain = String.valueOf(all.getKeyMoney());
-                            } else {
-                                if (!status.equals("")) {
-                                    double paid = Double.parseDouble(status);
-                                    remain = String.valueOf(all.getKeyMoney() - paid);
+                //is NOt Selected
+                if(cmbSearchRoomId.getSelectionModel().isEmpty()){
+                    System.out.println("paid eka click krddi meke value ekk select wela naaaaaaaaaaaaaaaaaa");
+
+                    try {
+                        ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
+                        tblReserve.getItems().clear();
+                        for (CustomDTO all : allReservationDetails) {
+
+                            if(all.getStatus().equalsIgnoreCase("Paid")){
+                                String remain = "";
+                                String status = all.getStatus();
+
+                                if (status.equalsIgnoreCase("Paid")) {
+                                    remain = "---";
+                                } else if (status.equalsIgnoreCase("Non-Paid")) {
+                                    remain = String.valueOf(all.getKeyMoney());
+                                } else {
+                                    if (!status.equals("")) {
+                                        double paid = Double.parseDouble(status);
+                                        remain = String.valueOf(all.getKeyMoney() - paid);
+                                    }
                                 }
-                            }
 
-                            tblReserve.getItems().add(new ReserveDetailTM(
-                                    all.getResId(),
-                                    all.getDate(),
-                                    all.getStudentId(),
-                                    all.getRoomTypeId(),
-                                    all.getStatus(),
-                                    remain
-                            ));
+                                tblReserve.getItems().add(new ReserveDetailTM(
+                                        all.getResId(),
+                                        all.getDate(),
+                                        all.getStudentId(),
+                                        all.getRoomTypeId(),
+                                        all.getStatus(),
+                                        remain
+                                ));
+                            }
                         }
+
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    //is Selected
+                    System.out.println("paid eka click krddi meke value ekk select wela tiyene");
+
+                    try {
+                        ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
+
+                        tblReserve.getItems().clear();
+
+                        for (CustomDTO all : allReservationDetails) {
+
+                            if(all.getStatus().equalsIgnoreCase("Paid") && all.getRegRoomId().getRoomTypeId().equals(cmbSearchRoomId.getValue())){
+
+                                String remain = "";
+                                String status = all.getStatus();
+
+                                if (status.equalsIgnoreCase("Paid")) {
+                                    remain = "---";
+                                } else if (status.equalsIgnoreCase("Non-Paid")) {
+                                    remain = String.valueOf(all.getKeyMoney());
+                                } else {
+                                    if (!status.equals("")) {
+                                        double paid = Double.parseDouble(status);
+                                        remain = String.valueOf(all.getKeyMoney() - paid);
+                                    }
+                                }
+
+                                tblReserve.getItems().add(new ReserveDetailTM(
+                                        all.getResId(),
+                                        all.getDate(),
+                                        all.getStudentId(),
+                                        all.getRoomTypeId(),
+                                        all.getStatus(),
+                                        remain
+                                ));
+
+                            }
+                        }
+
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
 
 
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
 
 
@@ -332,41 +410,93 @@ public class RegisterDetailFormController {
             if (newValue != null) {
                 System.out.println("Non-Paid clicked");
 
-                try {
-                    ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
-                    tblReserve.getItems().clear();
-                    for (CustomDTO all : allReservationDetails) {
+                //======Select CheckBox with Filtered Room======
 
-                        if(all.getStatus().equalsIgnoreCase("Non-Paid")){
-                            String remain = "";
-                            String status = all.getStatus();
+                //is NOt Selected
+                if(cmbSearchRoomId.getSelectionModel().isEmpty()) {
+                    System.out.println("paid eka click krddi meke value ekk select wela naaaaaaaaaaaaaaaaaa");
 
-                            if (status.equalsIgnoreCase("Paid")) {
-                                remain = "---";
-                            } else if (status.equalsIgnoreCase("Non-Paid")) {
-                                remain = String.valueOf(all.getKeyMoney());
-                            } else {
-                                if (!status.equals("")) {
-                                    double paid = Double.parseDouble(status);
-                                    remain = String.valueOf(all.getKeyMoney() - paid);
+                    try {
+                        ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
+                        tblReserve.getItems().clear();
+                        for (CustomDTO all : allReservationDetails) {
+
+                            if(all.getStatus().equalsIgnoreCase("Non-Paid")){
+                                String remain = "";
+                                String status = all.getStatus();
+
+                                if (status.equalsIgnoreCase("Paid")) {
+                                    remain = "---";
+                                } else if (status.equalsIgnoreCase("Non-Paid")) {
+                                    remain = String.valueOf(all.getKeyMoney());
+                                } else {
+                                    if (!status.equals("")) {
+                                        double paid = Double.parseDouble(status);
+                                        remain = String.valueOf(all.getKeyMoney() - paid);
+                                    }
                                 }
+
+                                tblReserve.getItems().add(new ReserveDetailTM(
+                                        all.getResId(),
+                                        all.getDate(),
+                                        all.getStudentId(),
+                                        all.getRoomTypeId(),
+                                        all.getStatus(),
+                                        remain
+                                ));
                             }
-
-                            tblReserve.getItems().add(new ReserveDetailTM(
-                                    all.getResId(),
-                                    all.getDate(),
-                                    all.getStudentId(),
-                                    all.getRoomTypeId(),
-                                    all.getStatus(),
-                                    remain
-                            ));
                         }
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
+                }else{
+                    //is Selected
+                    System.out.println("paid eka click krddi meke value ekk select wela tiyene");
+
+                    try {
+                        ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
+
+                        tblReserve.getItems().clear();
+
+                        for (CustomDTO all : allReservationDetails) {
+
+                            if(all.getStatus().equalsIgnoreCase("Non-Paid") && all.getRegRoomId().getRoomTypeId().equals(cmbSearchRoomId.getValue())){
+
+                                String remain = "";
+                                String status = all.getStatus();
+
+                                if (status.equalsIgnoreCase("Paid")) {
+                                    remain = "---";
+                                } else if (status.equalsIgnoreCase("Non-Paid")) {
+                                    remain = String.valueOf(all.getKeyMoney());
+                                } else {
+                                    if (!status.equals("")) {
+                                        double paid = Double.parseDouble(status);
+                                        remain = String.valueOf(all.getKeyMoney() - paid);
+                                    }
+                                }
+
+                                tblReserve.getItems().add(new ReserveDetailTM(
+                                        all.getResId(),
+                                        all.getDate(),
+                                        all.getStudentId(),
+                                        all.getRoomTypeId(),
+                                        all.getStatus(),
+                                        remain
+                                ));
+
+                            }
+                        }
 
 
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
+
+
+
 
 
 
@@ -384,40 +514,96 @@ public class RegisterDetailFormController {
             if (newValue != null) {
                 System.out.println("Other-Paid clicked");
 
-                try {
-                    ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
-                    tblReserve.getItems().clear();
-                    for (CustomDTO all : allReservationDetails) {
 
-                        if(!all.getStatus().equalsIgnoreCase("Paid") && !all.getStatus().equalsIgnoreCase("Non-Paid"))  {
-                            String remain = "";
-                            String status = all.getStatus();
 
-                            if (status.equalsIgnoreCase("Paid")) {
-                                remain = "---";
-                            } else if (status.equalsIgnoreCase("Non-Paid")) {
-                                remain = String.valueOf(all.getKeyMoney());
-                            } else {
-                                if (!status.equals("")) {
-                                    double paid = Double.parseDouble(status);
-                                    remain = String.valueOf(all.getKeyMoney() - paid);
+                //======Select CheckBox with Filtered Room======
+
+                //is NOt Selected
+                if(cmbSearchRoomId.getSelectionModel().isEmpty()) {
+                    System.out.println("paid eka click krddi meke value ekk select wela naaaaaaaaaaaaaaaaaa");
+
+                    try {
+                        ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
+                        tblReserve.getItems().clear();
+                        for (CustomDTO all : allReservationDetails) {
+
+                            if(!all.getStatus().equalsIgnoreCase("Paid") && !all.getStatus().equalsIgnoreCase("Non-Paid"))  {
+                                String remain = "";
+                                String status = all.getStatus();
+
+                                if (status.equalsIgnoreCase("Paid")) {
+                                    remain = "---";
+                                } else if (status.equalsIgnoreCase("Non-Paid")) {
+                                    remain = String.valueOf(all.getKeyMoney());
+                                } else {
+                                    if (!status.equals("")) {
+                                        double paid = Double.parseDouble(status);
+                                        remain = String.valueOf(all.getKeyMoney() - paid);
+                                    }
                                 }
-                            }
 
-                            tblReserve.getItems().add(new ReserveDetailTM(
-                                    all.getResId(),
-                                    all.getDate(),
-                                    all.getStudentId(),
-                                    all.getRoomTypeId(),
-                                    all.getStatus(),
-                                    remain
-                            ));
+                                tblReserve.getItems().add(new ReserveDetailTM(
+                                        all.getResId(),
+                                        all.getDate(),
+                                        all.getStudentId(),
+                                        all.getRoomTypeId(),
+                                        all.getStatus(),
+                                        remain
+                                ));
+                            }
                         }
+
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }else{
+                    //is Selected
+                    System.out.println("paid eka click krddi meke value ekk select wela tiyene");
+
+
+                    try {
+                        ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
+
+                        tblReserve.getItems().clear();
+
+                        for (CustomDTO all : allReservationDetails) {
+
+                            if(!all.getStatus().equalsIgnoreCase("Paid") && !all.getStatus().equalsIgnoreCase("Non-Paid") && all.getRegRoomId().getRoomTypeId().equals(cmbSearchRoomId.getValue())){
+
+                                String remain = "";
+                                String status = all.getStatus();
+
+                                if (status.equalsIgnoreCase("Paid")) {
+                                    remain = "---";
+                                } else if (status.equalsIgnoreCase("Non-Paid")) {
+                                    remain = String.valueOf(all.getKeyMoney());
+                                } else {
+                                    if (!status.equals("")) {
+                                        double paid = Double.parseDouble(status);
+                                        remain = String.valueOf(all.getKeyMoney() - paid);
+                                    }
+                                }
+
+                                tblReserve.getItems().add(new ReserveDetailTM(
+                                        all.getResId(),
+                                        all.getDate(),
+                                        all.getStudentId(),
+                                        all.getRoomTypeId(),
+                                        all.getStatus(),
+                                        remain
+                                ));
+
+                            }
+                        }
+
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
 
 
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
 
 
