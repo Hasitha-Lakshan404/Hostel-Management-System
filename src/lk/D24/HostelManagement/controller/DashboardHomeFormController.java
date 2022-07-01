@@ -81,4 +81,9 @@ public class DashboardHomeFormController {
 
     }
 
+    String userName;
+    public void getAllData(String text) {
+        userName=text;
+        lblUserShow.setText(userName);
+    }
 }
