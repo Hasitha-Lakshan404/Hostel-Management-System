@@ -19,6 +19,7 @@ import lk.D24.HostelManagement.entity.Student;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author : Hasitha Lakshan
@@ -117,5 +118,23 @@ public class ReserveDetailBOImpl implements ReserveDetailBO {
         ));
     }
 
+    @Override
+    public List<ReserveDTO> searchReservedRoomById(String id) throws IOException {
+        List<Reserve> reserves = reservationDAO.searchReservedRoomById(id);
+
+        List<ReserveDTO> reserveDTOS = new ArrayList<>();
+
+        for (Reserve reserve : reserves) {
+            reserveDTOS.add(new ReserveDTO(
+                    reserve.getResId(),
+                    reserve.getDate(),
+                    reserve.getStudent(),
+                    reserve.getRoom(),
+                    reserve.getStatus()
+            ));
+
+        }
+        return reserveDTOS;
+    }
 
 }

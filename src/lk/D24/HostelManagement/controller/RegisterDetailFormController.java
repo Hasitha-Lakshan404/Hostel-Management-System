@@ -22,6 +22,7 @@ import lk.D24.HostelManagement.view.tdm.ReserveDetailTM;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author : Hasitha Lakshan
@@ -60,6 +61,7 @@ public class RegisterDetailFormController {
         tblReserve.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("remainKeyMoney"));
 
         loadCmbData();
+        loadSearchReserve();
     }
 
 
@@ -116,13 +118,71 @@ public class RegisterDetailFormController {
     private void loadCmbData() throws IOException {
         for (RoomDTO roomDTO : reserveDetailBO.getAllRoom()) {
             cmbUpdateSelectRoom.getItems().add(roomDTO.getRoomTypeId());
+            cmbSearchRoomId.getItems().add(roomDTO.getRoomTypeId());
+            cmbRoomType.getItems().add(roomDTO.getType());
         }
 
         for (StudentDTO dto : reserveDetailBO.getAllStudent()) {
             cmbUpdateSelectStudent.getItems().add(dto.getStudentId());
         }
 
+
     }
+
+
+    private void loadSearchReserve(){
+        cmbSearchRoomId.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+
+            if(newValue!=null){
+                tblReserve.getItems().clear();
+                try {
+                    List<ReserveDTO> reserveDTOS = reserveDetailBO.searchReservedRoomById(newValue);
+
+
+
+                    for (ReserveDTO reserveDTO : reserveDTOS) {
+
+
+
+
+
+
+                        String remain = "";
+                        String status = reserveDTO.getStatus();
+
+                        if (status.equalsIgnoreCase("Paid")) {
+                            remain = "---";
+                        } else if (status.equalsIgnoreCase("Non-Paid")) {
+                            remain = String.valueOf(reserveDTO.getRoomId().getKeyMoney());
+                        } else {
+                            if (!status.equals("")) {
+                                double paid = Double.parseDouble(status);
+                                remain = String.valueOf(reserveDTO.getRoomId().getKeyMoney() - paid);
+                            }
+                        }
+
+
+
+                        tblReserve.getItems().add(new ReserveDetailTM(
+                                reserveDTO.getResId(),
+                                reserveDTO.getDate(),
+                                reserveDTO.getStudentId().getStudentId(),
+                                reserveDTO.getRoomId().getRoomTypeId(),
+                                reserveDTO.getStatus(),
+                                remain
+                        ));
+
+                    }
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        });
+    }
+
 
     public void menuDeleteOnAction(ActionEvent actionEvent) {
     }

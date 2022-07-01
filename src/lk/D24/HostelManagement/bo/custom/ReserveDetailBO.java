@@ -7,6 +7,7 @@ import lk.D24.HostelManagement.dto.StudentDTO;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author : Hasitha Lakshan
@@ -20,4 +21,5 @@ public interface ReserveDetailBO {
     public ArrayList<RoomDTO> getAllRoom() throws IOException;
     public ArrayList<StudentDTO> getAllStudent() throws IOException;
     boolean updateReservation(ReserveDTO dto) throws IOException;
+    public List<ReserveDTO> searchReservedRoomById(String id) throws IOException;
 }
