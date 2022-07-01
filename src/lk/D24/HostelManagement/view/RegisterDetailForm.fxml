@@ -105,8 +105,17 @@
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
-      <JFXCheckBox fx:id="checkPaid" layoutX="1239.0" layoutY="198.0" text=" Paid" />
-      <JFXCheckBox fx:id="checkNonPaid" layoutX="1375.0" layoutY="198.0" text="Non-Paid" />
-      <JFXCheckBox fx:id="checkOtherPayment" layoutX="1531.0" layoutY="198.0" text="Other Payment" />
+      <JFXCheckBox fx:id="checkPaid" layoutX="948.0" layoutY="198.0" onAction="#checkOnAction" text=" Paid" />
+      <JFXCheckBox fx:id="checkNonPaid" layoutX="1084.0" layoutY="198.0" onAction="#checkOnAction" text="Non-Paid" />
+      <JFXCheckBox fx:id="checkOtherPayment" layoutX="1240.0" layoutY="198.0" onAction="#checkOnAction" text="Other Payment" />
+      <JFXButton id="cusButtonText" layoutX="1453.0" layoutY="190.0" onAction="#clearFilerOnAction" prefHeight="39.0" prefWidth="211.0" ripplerFill="#39c2ae" style="-fx-background-color: #f75e5e;" text="Clear Filters">
+         <graphic>
+            <ImageView fitHeight="29.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assests/images/clear.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

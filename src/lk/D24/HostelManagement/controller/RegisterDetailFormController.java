@@ -62,6 +62,7 @@ public class RegisterDetailFormController {
 
         loadCmbData();
         loadSearchReserve();
+        addCheckBoxListener();
     }
 
 
@@ -139,13 +140,8 @@ public class RegisterDetailFormController {
                     List<ReserveDTO> reserveDTOS = reserveDetailBO.searchReservedRoomById(newValue);
 
 
-
                     for (ReserveDTO reserveDTO : reserveDTOS) {
-
-
-
-
-
+                        cmbRoomType.getSelectionModel().select(reserveDTO.getRoomId().getType());
 
                         String remain = "";
                         String status = reserveDTO.getStatus();
@@ -214,5 +210,55 @@ public class RegisterDetailFormController {
     }
 
     public void textFieldValidationOnAction(KeyEvent keyEvent) {
+    }
+
+    public void clearFilerOnAction(ActionEvent actionEvent) throws IOException {
+        loadAllReservation();
+        cmbSearchRoomId.setValue(null);
+        cmbRoomType.setValue(null);
+    }
+
+
+    private void addCheckBoxListener(){
+        checkPaid.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue!=null){
+                System.out.println("Paid clicked");
+                
+            }else{
+                System.out.println("Paid clicked oFF");
+            }
+
+        });
+
+        checkNonPaid.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue!=null){
+                System.out.println("Non-Paid clicked");
+
+            }else{
+                System.out.println("Non-Paid clicked oFF");
+            }
+
+        });
+
+        checkOtherPayment.selectedProperty().addListener((observable, oldValue, newValue) -> {
+//            checkRoomType.selectedProperty().setValue(false);
+            if(newValue!=null){
+                System.out.println("Other-Paid clicked");
+
+            }else{
+                System.out.println("Other clicked oFF");
+            }
+
+        });
+    }
+
+    public void checkOnAction(ActionEvent actionEvent) {
+
+    }
+
+    public void checkNonPaidOnAction(ActionEvent actionEvent) {
+    }
+
+    public void checkOtherPayment(ActionEvent actionEvent) {
     }
 }
