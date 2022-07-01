@@ -60,7 +60,7 @@
             <Image url="@assests/images/logout.png" />
          </image>
       </ImageView>
-      <Label layoutX="1094.0" layoutY="25.0"  prefHeight="28.0" prefWidth="93.0" text="Time :">
+      <Label layoutX="1094.0" layoutY="25.0" prefHeight="28.0" prefWidth="93.0" text="Time :">
          <font>
             <Font name="Book Antiqua" size="22.0" />
          </font>
@@ -149,7 +149,7 @@
             <Image url="@assests/images/downPoint.png" />
          </image>
       </ImageView>
-      <AnchorPane fx:id="txtDownPane" layoutX="1550.0" layoutY="60.0" prefHeight="475.0" prefWidth="355.0" style="-fx-background-color: #158476;">
+      <AnchorPane fx:id="txtDownPane" layoutX="1550.0" layoutY="60.0" prefHeight="475.0" prefWidth="355.0" style="-fx-background-color: #ffffff;">
          <children>
             <JFXTextField fx:id="txtUserName" focusColor="#2f1515" labelFloat="true" layoutX="72.0" layoutY="69.0" prefHeight="31.0" prefWidth="249.0" promptText="Username" unFocusColor="#4059a9" />
             <JFXPasswordField fx:id="pwdPassword" labelFloat="true" layoutX="60.0" layoutY="311.0" prefHeight="31.0" prefWidth="240.0" promptText="Password" />
@@ -165,14 +165,14 @@
                   <Image url="@assests/images/Password%20Key.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="btnUpdate" layoutX="115.0" layoutY="401.0" onAction="#btnUpdateOnAction" prefHeight="36.0" prefWidth="141.0" style="-fx-background-color: #153489; -fx-text-fill: #ffffff;" text="U P D A T E " textFill="WHITE" />
+            <JFXButton fx:id="btnUpdate" layoutX="115.0" layoutY="401.0" onAction="#btnUpdateOnAction" prefHeight="36.0" prefWidth="141.0" style="-fx-background-color: #3666; -fx-text-fill: BLACK;" text="U P D A T E " textFill="WHITE" />
             <JFXTextField fx:id="txtOldPassword" focusColor="BLACK" labelFloat="true" layoutX="71.0" layoutY="151.0" prefHeight="31.0" prefWidth="249.0" promptText="old Password" unFocusColor="#4059a9" />
             <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="26.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@assests/images/Password%20Key.png" />
                </image>
             </ImageView>
-            <JFXButton layoutX="110.0" layoutY="220.0" onAction="#btnSearchOnAction" prefHeight="36.0" prefWidth="141.0" style="-fx-background-color: #153489; -fx-text-fill: #ffffff;" text="S E A R C H " textFill="WHITE" />
+            <JFXButton layoutX="110.0" layoutY="220.0" onAction="#btnSearchOnAction" prefHeight="36.0" prefWidth="141.0" style="-fx-background-color: #3666; -fx-text-fill: BLACK;" text="S E A R C H " textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>
