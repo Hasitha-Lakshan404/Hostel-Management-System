@@ -4,6 +4,10 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.IntegerBinding;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
@@ -50,6 +54,14 @@ public class RegisterDetailFormController {
 
     ReserveDetailBO reserveDetailBO = new ReserveDetailBOImpl();
 
+    private ObservableSet<JFXCheckBox> selectedCheckBoxes = FXCollections.observableSet();
+    private ObservableSet<JFXCheckBox> unselectedCheckBoxes = FXCollections.observableSet();
+
+    private IntegerBinding numCheckBoxesSelected = Bindings.size(selectedCheckBoxes);
+
+    private final int maxNumSelected =  1;
+
+
     public void initialize() throws IOException {
         loadAllReservation();
 
@@ -63,8 +75,50 @@ public class RegisterDetailFormController {
         loadCmbData();
         loadSearchReserve();
         addCheckBoxListener();
+
+
+        configureCheckBox(checkPaid);
+        configureCheckBox(checkNonPaid);
+        configureCheckBox(checkOtherPayment);
+
+//        submitButton.setDisable(true);
+
+        numCheckBoxesSelected.addListener((obs, oldSelectedCount, newSelectedCount) -> {
+            if (newSelectedCount.intValue() >= maxNumSelected) {
+                unselectedCheckBoxes.forEach(cb -> cb.setDisable(true));
+//                submitButton.setDisable(false);
+            } else {
+                unselectedCheckBoxes.forEach(cb -> cb.setDisable(false));
+//                submitButton.setDisable(true);
+                try {
+                    loadAllReservation();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
+    private void configureCheckBox(JFXCheckBox checkBox) {
+
+        if (checkBox.isSelected()) {
+            selectedCheckBoxes.add(checkBox);
+        } else {
+            unselectedCheckBoxes.add(checkBox);
+        }
+
+        checkBox.selectedProperty().addListener((obs, wasSelected, isNowSelected) -> {
+            if (isNowSelected) {
+                unselectedCheckBoxes.remove(checkBox);
+                selectedCheckBoxes.add(checkBox);
+            } else {
+                selectedCheckBoxes.remove(checkBox);
+                unselectedCheckBoxes.add(checkBox);
+            }
+
+        });
+
+    }
 
     public void loadAllReservation() throws IOException {
         tblReserve.getItems().clear();
@@ -131,10 +185,10 @@ public class RegisterDetailFormController {
     }
 
 
-    private void loadSearchReserve(){
+    private void loadSearchReserve() {
         cmbSearchRoomId.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 
-            if(newValue!=null){
+            if (newValue != null) {
                 tblReserve.getItems().clear();
                 try {
                     List<ReserveDTO> reserveDTOS = reserveDetailBO.searchReservedRoomById(newValue);
@@ -156,7 +210,6 @@ public class RegisterDetailFormController {
                                 remain = String.valueOf(reserveDTO.getRoomId().getKeyMoney() - paid);
                             }
                         }
-
 
 
                         tblReserve.getItems().add(new ReserveDetailTM(
@@ -200,11 +253,11 @@ public class RegisterDetailFormController {
                 room,
                 txtUpdateStatus.getText()));
 
-        if(b){
-            new Alert(Alert.AlertType.INFORMATION,"Reservation Updated!!").show();
+        if (b) {
+            new Alert(Alert.AlertType.INFORMATION, "Reservation Updated!!").show();
             loadAllReservation();
-        }else{
-            new Alert(Alert.AlertType.INFORMATION,"Something Went Wrong").show();
+        } else {
+            new Alert(Alert.AlertType.INFORMATION, "Something Went Wrong").show();
 
         }
     }
@@ -216,37 +269,162 @@ public class RegisterDetailFormController {
         loadAllReservation();
         cmbSearchRoomId.setValue(null);
         cmbRoomType.setValue(null);
+
+        checkPaid.selectedProperty().setValue(false);
+        checkNonPaid.selectedProperty().setValue(false);
+        checkOtherPayment.selectedProperty().setValue(false);
     }
 
 
-    private void addCheckBoxListener(){
+    private void addCheckBoxListener() {
         checkPaid.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue!=null){
+            if (newValue != null) {
                 System.out.println("Paid clicked");
-                
-            }else{
+                try {
+                    ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
+                    tblReserve.getItems().clear();
+                    for (CustomDTO all : allReservationDetails) {
+
+                        if(all.getStatus().equalsIgnoreCase("Paid")){
+                            String remain = "";
+                            String status = all.getStatus();
+
+                            if (status.equalsIgnoreCase("Paid")) {
+                                remain = "---";
+                            } else if (status.equalsIgnoreCase("Non-Paid")) {
+                                remain = String.valueOf(all.getKeyMoney());
+                            } else {
+                                if (!status.equals("")) {
+                                    double paid = Double.parseDouble(status);
+                                    remain = String.valueOf(all.getKeyMoney() - paid);
+                                }
+                            }
+
+                            tblReserve.getItems().add(new ReserveDetailTM(
+                                    all.getResId(),
+                                    all.getDate(),
+                                    all.getStudentId(),
+                                    all.getRoomTypeId(),
+                                    all.getStatus(),
+                                    remain
+                            ));
+                        }
+                    }
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            } else {
                 System.out.println("Paid clicked oFF");
+
+
             }
 
         });
+
+
+        //=====NonPaid Listener=====
 
         checkNonPaid.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue!=null){
+            if (newValue != null) {
                 System.out.println("Non-Paid clicked");
 
-            }else{
+                try {
+                    ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
+                    tblReserve.getItems().clear();
+                    for (CustomDTO all : allReservationDetails) {
+
+                        if(all.getStatus().equalsIgnoreCase("Non-Paid")){
+                            String remain = "";
+                            String status = all.getStatus();
+
+                            if (status.equalsIgnoreCase("Paid")) {
+                                remain = "---";
+                            } else if (status.equalsIgnoreCase("Non-Paid")) {
+                                remain = String.valueOf(all.getKeyMoney());
+                            } else {
+                                if (!status.equals("")) {
+                                    double paid = Double.parseDouble(status);
+                                    remain = String.valueOf(all.getKeyMoney() - paid);
+                                }
+                            }
+
+                            tblReserve.getItems().add(new ReserveDetailTM(
+                                    all.getResId(),
+                                    all.getDate(),
+                                    all.getStudentId(),
+                                    all.getRoomTypeId(),
+                                    all.getStatus(),
+                                    remain
+                            ));
+                        }
+                    }
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+
+            } else {
                 System.out.println("Non-Paid clicked oFF");
+
             }
 
         });
 
+
+        //=====OtherPayed Listener=====
+
         checkOtherPayment.selectedProperty().addListener((observable, oldValue, newValue) -> {
-//            checkRoomType.selectedProperty().setValue(false);
-            if(newValue!=null){
+            if (newValue != null) {
                 System.out.println("Other-Paid clicked");
 
-            }else{
+                try {
+                    ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
+                    tblReserve.getItems().clear();
+                    for (CustomDTO all : allReservationDetails) {
+
+                        if(!all.getStatus().equalsIgnoreCase("Paid") && !all.getStatus().equalsIgnoreCase("Non-Paid"))  {
+                            String remain = "";
+                            String status = all.getStatus();
+
+                            if (status.equalsIgnoreCase("Paid")) {
+                                remain = "---";
+                            } else if (status.equalsIgnoreCase("Non-Paid")) {
+                                remain = String.valueOf(all.getKeyMoney());
+                            } else {
+                                if (!status.equals("")) {
+                                    double paid = Double.parseDouble(status);
+                                    remain = String.valueOf(all.getKeyMoney() - paid);
+                                }
+                            }
+
+                            tblReserve.getItems().add(new ReserveDetailTM(
+                                    all.getResId(),
+                                    all.getDate(),
+                                    all.getStudentId(),
+                                    all.getRoomTypeId(),
+                                    all.getStatus(),
+                                    remain
+                            ));
+                        }
+                    }
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+
+            } else {
                 System.out.println("Other clicked oFF");
+
             }
 
         });
