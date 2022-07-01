@@ -310,7 +310,6 @@ public class RegisterDetailFormController {
 
                 //is NOt Selected
                 if(cmbSearchRoomId.getSelectionModel().isEmpty()){
-                    System.out.println("paid eka click krddi meke value ekk select wela naaaaaaaaaaaaaaaaaa");
 
                     try {
                         ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
@@ -349,7 +348,6 @@ public class RegisterDetailFormController {
                     }
                 }else{
                     //is Selected
-                    System.out.println("paid eka click krddi meke value ekk select wela tiyene");
 
                     try {
                         ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
@@ -414,7 +412,6 @@ public class RegisterDetailFormController {
 
                 //is NOt Selected
                 if(cmbSearchRoomId.getSelectionModel().isEmpty()) {
-                    System.out.println("paid eka click krddi meke value ekk select wela naaaaaaaaaaaaaaaaaa");
 
                     try {
                         ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
@@ -452,7 +449,6 @@ public class RegisterDetailFormController {
                     }
                 }else{
                     //is Selected
-                    System.out.println("paid eka click krddi meke value ekk select wela tiyene");
 
                     try {
                         ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
@@ -520,7 +516,6 @@ public class RegisterDetailFormController {
 
                 //is NOt Selected
                 if(cmbSearchRoomId.getSelectionModel().isEmpty()) {
-                    System.out.println("paid eka click krddi meke value ekk select wela naaaaaaaaaaaaaaaaaa");
 
                     try {
                         ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
@@ -560,8 +555,6 @@ public class RegisterDetailFormController {
 
                 }else{
                     //is Selected
-                    System.out.println("paid eka click krddi meke value ekk select wela tiyene");
-
 
                     try {
                         ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
