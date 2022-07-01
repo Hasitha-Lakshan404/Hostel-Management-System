@@ -42,4 +42,16 @@ public class UserBOImpl implements UserBO {
         return ud;
     }
 
+    @Override
+    public boolean updateUser(UserDTO dto) throws IOException {
+
+        return userDAO.update(new User(
+                dto.getUserId(),
+                dto.getName(),
+                dto.getUserName(),
+                dto.getPassword()
+        ));
+
+    }
+
 }

@@ -1,5 +1,6 @@
 package lk.D24.HostelManagement.bo.custom;
 
+import lk.D24.HostelManagement.dto.RoomDTO;
 import lk.D24.HostelManagement.dto.UserDTO;
 
 import java.io.IOException;
@@ -15,4 +16,5 @@ import java.util.ArrayList;
 public interface UserBO {
     public ArrayList<UserDTO> getAllUser() throws IOException;
 
+    boolean updateUser(UserDTO dto) throws IOException;
 }

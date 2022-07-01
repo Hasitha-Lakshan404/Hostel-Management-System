@@ -105,7 +105,7 @@ public class LoginFormController {
         stage.setScene(scene1);
 
         DashboardHomeFormController controller = loader1.getController();
-        controller.getAllData(txtUserName.getText());
+        controller.getAllData(txtUserName.getText(),pwdPassword.getText());
 
         stage.centerOnScreen();
 
