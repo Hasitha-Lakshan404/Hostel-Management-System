@@ -21,7 +21,7 @@ public class AppInitializer extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("lk/D24/HostelManagement/view/DashboardHomeForm.fxml"))));
+        primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("lk/D24/HostelManagement/view/LoginForm.fxml"))));
         primaryStage.setResizable(false);
         //primaryStage.getIcons().add(new Image("location"));
         primaryStage.setTitle("sample title");
